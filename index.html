@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang = "pt-br"> 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NOME DA SUA EMPRESA BARBER SHOP</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body> 
+
+<header>
+<nav>
+    <ul>
+        <li><a href="home">Home</a></li>
+        <li><a href="#servico">Serviços</a></li>
+        <li><a href="#profissionais">Profissionais</a></li>
+        <li><a href="#marcacao">Marcação</a></li>
+        <li><a href="#informacoes">Informacoes</a></li>
+    </ul>
+</nav>
+</header>
+
+<main>
+<section class="hero">
+    <div class="container">
+        
+        <div class="hero_frases">
+
+            <h1 class="titulo_hero">
+                NOME DA BARBEARIA
+            </h1>
+
+            <h2 class="hero_frase_1">
+                ONDE A <span class="tradicao">TRADIÇÃO</span> ENCONTRA O <span class="moderno">MODERNO</span>
+            </h2>
+
+            <p class="hero_frase_2">
+                Nossa missão é fornecer apenas o excepcional
+            </p>
+
+            <div class="hero_sobre_nos">
+                <h3>Sobre Nós</h3> 
+                <p>
+                    Somos uma barbearia dedicada à tradição do corte clássico com técnicas modernas, oferecendo experiência, precisão e atendimento de alto nível.
+                </p>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="servico" class="servico">
+
+</section>
+
+<section id="profissionais" class="profissionais">
+
+</section>
+
+<section id="marcacao" class="marcacao">
+    <div class="container">
+    
+        <h2>Agende seu Horário</h2>
+        
+        <form id="form_agendamento">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" placeholder="Digite seu nome" required>
+
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone" placeholder="Digite seu telefone" required>
+
+            <label for="servico">Serviço</label>
+
+            <select name="servico" id="servico" required>
+                <option value="" disabled selected>Selecione um Serviço</option>
+
+                <option value="corte">Corte clássico — R$60</option>
+                <option value="barba">Barba — R$30</option>
+                <option value="corte_barba">Corte + Barba — R$80</option>
+                <option value="massagem">Massagem - R$50</option>
+                
+            </select>
+            
+            <label for="profissional">Profissional</label>
+
+            <select name="profissional" id="profissional">
+                <option value="">Sem preferencia de profissional</option>
+                <option value="manfred">Manfred Godoy</option>
+                <option value="william">William Cosair</option>
+                <option value="sell">Sell Inras</option>
+            </select>
+
+            <label for="data">Data</label>
+            <input type="date" id="data" required>
+
+            <label for="hora">Hora</label>
+            <input type="time" id="hora" required>
+
+            <button type="submit">Agendar pelo WhatsApp</button>
+
+        </form>
+
+    </div>
+</section>
+
+<section id="informacoes" class="informacoes">
+
+</section>
+</main>
+
+<footer>
+
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

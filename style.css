@@ -1,0 +1,47 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/*estilizando o body*/
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    line-height:1.5;
+    background:#111;
+    color:white;
+}
+
+/*padronizando tags*/
+h1{
+    font-weight:700;
+}
+
+p{
+    font-size:16px;
+}
+
+a{
+    text-decoration:none;
+}
+
+/*padronizando container*/
+.container{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 20px;
+}
+
+/*ESTILIZANDO SITE*/
+
+/*estilo HERO*/
+.hero{
+    background-image: url("img/hero.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display:flex;
+    min-height:100vh;
+    align-items:center;
+    color:white;
+}
