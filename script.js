@@ -7,9 +7,28 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
+    //FORMATAR TELEFONE
+    const telefoneInput = document.getElementById("telefone");
+
+    if (telefoneInput) {
+        telefoneInput.addEventListener("input", function () {
+        let valor = this.value.replace(/\D/g, "");
+
+    if (valor.length > 11) {
+            valor = valor.slice(0, 11);
+        }
+
+        //(11) 98765-4321
+        valor = valor.replace(/^(\d{2})(\d)/g, "($1) $2");
+        valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
+
+        this.value = valor;
+    });
+}
+    
+    //LIMITAR DATA 
     const inputData = document.getElementById("data");
 
-    //LIMITAR DATA 
     if (inputData) {
         const hoje = new Date().toISOString().split("T")[0];
         inputData.setAttribute("min", hoje);
