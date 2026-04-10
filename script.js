@@ -7,6 +7,14 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
+    const inputData = document.getElementById("data");
+
+    //LIMITAR DATA 
+    if (inputData) {
+        const hoje = new Date().toISOString().split("T")[0];
+        inputData.setAttribute("min", hoje);
+    }
+
     form.addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -14,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const nome = document.getElementById("nome").value.trim();
         const telefone = document.getElementById("telefone").value.trim();
 
-       // SERVIÇO
+       //SERVIÇO
 const servicoSelect = document.getElementById("servico");
 
 let servico = "Não informado";
@@ -23,7 +31,7 @@ if (servicoSelect && servicoSelect.value) {
     servico = servicoSelect.selectedOptions[0].text;
 }
 
-// PROFISSIONAL
+//PROFISSIONAL
 const profissionalSelect = document.getElementById("profissional");
 
 let profissional = "Qualquer profissional";
@@ -35,20 +43,20 @@ if (profissionalSelect && profissionalSelect.value) {
         const data = document.getElementById("data").value;
         const hora = document.getElementById("hora").value;
 
-        //VALIDAÇÃO EXTRA (evita mensagem vazia)
+        //VALIDAÇÃO EXTRA
         if (!nome || !telefone || !data || !hora) {
             alert("Preencha todos os campos obrigatórios.");
             return;
         }
 
-        //FORMATAR DATA (YYYY-MM-DD → DD/MM/YYYY)
+        //FORMATAR DATA
         let dataFormatada = data;
         if (data.includes("-")) {
             const partes = data.split("-");
             dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
         }
 
-        // 📌 MENSAGEM BONITA
+        //MENSAGEM MARCACAO
         const mensagem = 
         `Olá, gostaria de agendar um horário:
 
