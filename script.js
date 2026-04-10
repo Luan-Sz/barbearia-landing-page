@@ -14,18 +14,17 @@ document.addEventListener("DOMContentLoaded", function () {
         telefoneInput.addEventListener("input", function () {
         let valor = this.value.replace(/\D/g, "");
 
-    if (valor.length > 11) {
+        if (valor.length > 11) {
             valor = valor.slice(0, 11);
         }
 
-        //(11) 98765-4321
         valor = valor.replace(/^(\d{2})(\d)/g, "($1) $2");
         valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
 
         this.value = valor;
-    });
-}
-    
+        });
+    }
+
     //LIMITAR DATA 
     const inputData = document.getElementById("data");
 
@@ -37,34 +36,56 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", function (event) {
         event.preventDefault();
 
+        //BOTAO
+        const botao = form.querySelector("button");
+
+        if (botao) {
+            botao.innerText = "Enviando...";
+            botao.disabled = true;
+        }
+
         //CAMPOS BÁSICOS
         const nome = document.getElementById("nome").value.trim();
         const telefone = document.getElementById("telefone").value.trim();
 
-       //SERVIÇO
-const servicoSelect = document.getElementById("servico");
+        //SERVIÇO
+        const servicoSelect = document.getElementById("servico");
 
-let servico = "Não informado";
+        let servico = "Não informado";
 
-if (servicoSelect && servicoSelect.value) {
-    servico = servicoSelect.selectedOptions[0].text;
-}
+        if (servicoSelect && servicoSelect.value) {
+            servico = servicoSelect.selectedOptions[0].text;
+        }
 
-//PROFISSIONAL
-const profissionalSelect = document.getElementById("profissional");
+        //PROFISSIONAL
+        const profissionalSelect = document.getElementById("profissional");
 
-let profissional = "Qualquer profissional";
+        let profissional = profissionalSelect?.value
+            ? profissionalSelect.selectedOptions[0].text
+            : "Qualquer profissional";
 
-if (profissionalSelect && profissionalSelect.value) {
-    profissional = profissionalSelect.selectedOptions[0].text;
-}
         //DATA E HORA
-        const data = document.getElementById("data").value;
-        const hora = document.getElementById("hora").value;
+        const dataInput = document.getElementById("data");
+        const horaInput = document.getElementById("hora");
+
+        const data = dataInput ? dataInput.value : "";
+        const hora = horaInput ? horaInput.value : "";
 
         //VALIDAÇÃO EXTRA
-        if (!nome || !telefone || !data || !hora) {
-            alert("Preencha todos os campos obrigatórios.");
+        if (nome.length < 2) {
+            alert("Nome muito curto");
+            return;
+        }
+
+        const telefoneLimpo = telefone.replace(/\D/g, "");
+        if (telefoneLimpo.length < 10) {
+            alert("Telefone inválido");
+            return;
+        }
+
+        if (!data || !hora) {
+            alert("Data e hora obrigatórias");
+            resetButton(botao);
             return;
         }
 
@@ -76,11 +97,10 @@ if (profissionalSelect && profissionalSelect.value) {
         }
 
         //MENSAGEM MARCACAO
-        const mensagem = 
-        `Olá, gostaria de agendar um horário:
+        const mensagem = `Olá, gostaria de agendar um horário:
 
         Nome: ${nome}
-        Telefone: ${telefone}
+        Telefone: ${telefoneLimpo}
         Serviço: ${servico}
         Profissional: ${profissional}
         Data: ${dataFormatada}
@@ -93,7 +113,22 @@ if (profissionalSelect && profissionalSelect.value) {
         const link = `https://wa.me/${numero}?text=${mensagemFormatada}`;
 
         //REDIRECIONAMENTO SEGURO
-        window.location.href = link;
+        const confirmar = confirm("Confirmar agendamento e abrir WhatsApp?");
+        
+        if (confirmar) {
+            resetButton(botao);
+            window.location.href = link;
+            return;
+        }
+
+        resetButton(botao);
     });
 
 });
+
+function resetButton(botao) {
+    if (botao) {
+        botao.innerText = "Agendar pelo WhatsApp";
+        botao.disabled = false;
+    }
+}
