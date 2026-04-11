@@ -9,15 +9,15 @@
 .servico_card,
 .info_card,
 .item {
-    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.3s ease;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    will-change: transform;
 }
 
 .servico_card:hover,
 .info_card:hover,
 .item:hover {
-    transform: translateY(-8px) scale(1.01);
+    transform: translateY(-6px) scale(1.015);
     box-shadow: 0 18px 35px rgba(0,0,0,0.35);
-    border-color: var(--dourado);
 }
 
 /*ROOTS*/
@@ -411,7 +411,8 @@ nav a:hover::after {
 /*SCROLL REVEAL*/
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(25px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .reveal.active {
