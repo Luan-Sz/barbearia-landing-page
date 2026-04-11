@@ -132,3 +132,23 @@ function resetButton(botao) {
         botao.disabled = false;
     }
 }
+
+//SCROLL REVEAL
+const elements = document.querySelectorAll(
+  ".servico_card, .info_card, .item, .hero_frases"
+);
+
+function revealOnScroll() {
+    const windowHeight = window.innerHeight;
+
+    elements.forEach((el) => {
+        const top = el.getBoundingClientRect().top;
+
+        if (top < windowHeight - 100) {
+            el.classList.add("active");
+        }
+    });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
