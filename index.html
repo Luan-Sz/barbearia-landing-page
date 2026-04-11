@@ -160,28 +160,51 @@
 </section>
 
 <section id="informacoes" class="informacoes">
-    <div class="container">
-        <h2>Informações</h2>
+  <div class="container">
+    <h2>Informações</h2>
 
-        <div class="servicos_lista">
+    <div class="info_grid">
 
-            <div class="item">
-                <h3>Horário</h3>
-                <p>Seg - Sáb: 09h às 19h</p>
-            </div>
+      <!--HORARIO -->
+      <div class="info_card">
+        <h3>Horário de Funcionamento</h3>
+        <p>Segunda a Sábado</p>
+        <p>09:00 - 19:00</p>
+      </div>
 
-            <div class="item">
-                <h3>Localização</h3>
-                <p>Fortaleza - CE</p>
-            </div>
+      <!--LOCALIZAÇÃO-->
+      <div class="info_card">
+        <h3>Localização</h3>
+        <p>Rua Exemplo, 123</p>
+        <p>Centro - Sua Cidade</p>
 
-            <div class="item">
-                <h3>Atendimento</h3>
-                <p>Agendamento via WhatsApp</p>
-            </div>
+        <a 
+          href="https://www.google.com/maps" 
+          target="_blank"
+          class="map_link"
+        >
+          Abrir no Google Maps
+        </a>
+      </div>
 
-        </div>
+      <!--ATENDIMENTO-->
+      <div class="info_card">
+        <h3>Atendimento</h3>
+        <p>Agendamento via WhatsApp</p>
+        <p>Resposta média: 5 min</p>
+      </div>
+
     </div>
+
+    <!--MAPA-->
+    <div class="map_container">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18..."
+        loading="lazy"
+      ></iframe>
+    </div>
+
+  </div>
 </section>
 </main>
 
