@@ -13,6 +13,13 @@
     --spacing-md: 32px;
     --spacing-lg: 64px;
     --spacing-xl: 96px;
+
+    /*NOVA PALETA*/
+    --preto: #0d0d0d;
+    --marrom: #2b1d17;
+    --vinho: #4b1e1e;
+    --dourado: #c6a96b;
+    --cinza: #1a1a1a;
 }
 
 section {
@@ -97,13 +104,27 @@ a{
     align-items: center;
     text-align: left;
     padding: 0 20px;
+
+    background: url("img/hero.jpg") center/cover no-repeat;
 }
 
 .hero::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.65);
+    background: linear-gradient(
+        to right,
+        rgba(13,13,13,0.9),
+        rgba(43,29,23,0.7)
+    );
+}
+
+.tradicao {
+    color: var(--dourado);
+}
+
+.moderno {
+    color: var(--vinho);
 }
 
 .hero_frases {
@@ -145,34 +166,36 @@ form {
 /*ESTILO BUTTON*/
 form button {
     grid-column: span 2;
-    background: #25D366;
+    background: var(--vinho);
     color: white;
     padding: 15px;
     border: none;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
 }
 
 form button:hover {
-    background: #1ebe57;
+    background: var(--dourado);
+    color: black;
     transform: scale(1.02);
 }
 
 /*ESTILO INPUT SELECT*/
 input, select {
-    padding: 10px;
-    border: none;
+    padding: 12px;
+    border: 1px solid #333;
     border-radius: 5px;
-    background: #222;
+    background: #111;
     color: white;
-}
-input:focus, select:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px #25D366;
 }
 
 /*ESTILO NAV*/
+nav {
+    background: rgba(0,0,0,0.6);
+    position: sticky;
+    top: 0;
+}
+
 nav ul {
     display: flex;
     gap: 20px;
@@ -184,10 +207,8 @@ nav ul {
     z-index: 10;
 }
 
-nav a {
-    color: white;
-    opacity: 0.8;
-    transition: 0.3s;
+nav a:hover {
+    color: var(--dourado);
 }
 
 nav a:hover {
@@ -205,13 +226,13 @@ nav a:hover {
 }
 
 .item {
-    background: #1a1a1a;
-    padding: 20px;
+    background: var(--cinza);
+    padding: 25px;
     border-radius: 10px;
-    transition: 0.3s;
+    border: 1px solid #2a2a2a;
 }
 
 .item:hover {
-    transform: scale(1.05);
-    background: #222;
+    transform: translateY(-5px);
+    border-color: var(--dourado);
 }
