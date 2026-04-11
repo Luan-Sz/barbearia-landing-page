@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang = "pt-br"> 
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +7,14 @@
 <title>NOME DA SUA EMPRESA BARBER SHOP</title>
 
 <meta name="description" content="Barbearia especializada em cortes clássicos e modernos. Agende seu horário online de forma rápida e prática.">
-
 <meta name="keywords" content="barbearia, corte masculino, barba, fade, agendamento barbearia">
-
-<meta name="author" content="Seu Nome ou Nome da Barbearia">
+<meta name="author" content="Nome da Barbearia">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body> 
+<body>
 
 <header>
 <nav>
@@ -32,9 +29,10 @@
 </header>
 
 <main>
+
 <section id="home" class="hero">
     <div class="container">
-        
+
         <div class="hero_frases">
 
             <h1 class="titulo_hero">
@@ -49,23 +47,18 @@
                 Nossa missão é fornecer apenas o excepcional
             </p>
 
-            <div class="hero_sobre_nos">
-                <h3>Sobre Nós</h3> 
-                <p>
-                    Somos uma barbearia dedicada à tradição do corte clássico com técnicas modernas, oferecendo experiência, precisão e atendimento de alto nível.
-                </p>
-
-            </div>
         </div>
+
     </div>
 </section>
 
 <section id="marcacao" class="marcacao">
     <div class="container">
-    
+
         <h2>Agende seu Horário</h2>
-        
+
         <form id="form_agendamento">
+
             <label for="nome">Nome</label>
             <input type="text" id="nome" placeholder="Digite seu nome" required>
 
@@ -73,20 +66,16 @@
             <input type="tel" id="telefone" placeholder="Digite seu telefone" required>
 
             <label for="servico">Serviço</label>
-
-            <select name="servico" id="servico" required>
+            <select id="servico" required>
                 <option value="" disabled selected>Selecione um Serviço</option>
-
                 <option value="corte">Corte clássico — R$60</option>
                 <option value="barba">Barba — R$30</option>
                 <option value="corte_barba">Corte + Barba — R$80</option>
                 <option value="massagem">Massagem - R$50</option>
-                
             </select>
-            
-            <label for="profissional">Profissional</label>
 
-            <select name="profissional" id="profissional">
+            <label for="profissional">Profissional</label>
+            <select id="profissional">
                 <option value="">Sem preferencia de profissional</option>
                 <option value="manfred">Manfred Godoy</option>
                 <option value="william">William Cosair</option>
@@ -107,83 +96,56 @@
 </section>
 
 <section id="servicos" class="servicos">
-  <div class="container">
-    <h2>Serviços</h2>
+    <div class="container">
 
-    <div class="servicos_grid">
+        <h2>Serviços</h2>
 
-      <div class="servico_card">
-        <div class="servico_img corte"></div>
-        <div class="servico_info">
-          <h3>Corte Clássico</h3>
-          <p>Acabamento preciso com estilo tradicional.</p>
-          <span>R$ 60</span>
+        <div class="servicos_grid">
+
+            <div class="servico_card">
+                <div class="servico_img" style="background-image:url('img/cutting.avif')"></div>
+                <div class="servico_info">
+                    <h3>Corte Clássico</h3>
+                    <p>Precisão, estilo e acabamento profissional.</p>
+                    <span>R$ 60</span>
+                </div>
+            </div>
+
+            <div class="servico_card">
+                <div class="servico_img" style="background-image:url('img/barba_2.avif')"></div>
+                <div class="servico_info">
+                    <h3>Barba</h3>
+                    <p>Design e alinhamento com técnica premium.</p>
+                    <span>R$ 30</span>
+                </div>
+            </div>
+
+            <div class="servico_card">
+                <div class="servico_img" style="background-image:url('img/corte_1.avif')"></div>
+                <div class="servico_info">
+                    <h3>Corte + Barba</h3>
+                    <p>Experiência completa de cuidado masculino.</p>
+                    <span>R$ 80</span>
+                </div>
+            </div>
+
+            <div class="servico_card">
+                <div class="servico_img" style="background-image:url('img/massa.jpg')"></div>
+                <div class="servico_info">
+                    <h3>Massagem</h3>
+                    <p>Relaxamento e recuperação pós-serviço.</p>
+                    <span>R$ 50</span>
+                </div>
+            </div>
+
         </div>
-      </div>
-
-      <div class="servico_card">
-        <div class="servico_img barba"></div>
-        <div class="servico_info">
-          <h3>Barba</h3>
-          <p>Modelagem e acabamento com navalha.</p>
-          <span>R$ 30</span>
-        </div>
-      </div>
-
-      <div class="servico_card">
-        <div class="servico_img combo"></div>
-        <div class="servico_info">
-          <h3>Corte + Barba</h3>
-          <p>Experiência completa de cuidado masculino.</p>
-          <span>R$ 80</span>
-        </d<section id="servicos" class="servicos">
-  <div class="container">
-    <h2>Serviços</h2>
-
-    <div class="servicos_grid">
-
-      <div class="servico_card">
-        <div class="servico_img" style="background-image:url('cutting.avif')"></div>
-        <div class="servico_info">
-          <h3>Corte Clássico</h3>
-          <p>Precisão, estilo e acabamento profissional.</p>
-          <span>R$ 60</span>
-        </div>
-      </div>
-
-      <div class="servico_card">
-        <div class="servico_img" style="background-image:url('barba_2.avif')"></div>
-        <div class="servico_info">
-          <h3>Barba</h3>
-          <p>Design e alinhamento com técnica premium.</p>
-          <span>R$ 30</span>
-        </div>
-      </div>
-
-      <div class="servico_card">
-        <div class="servico_img" style="background-image:url('corte_1.avif')"></div>
-        <div class="servico_info">
-          <h3>Corte + Barba</h3>
-          <p>Experiência completa de cuidado masculino.</p>
-          <span>R$ 80</span>
-        </div>
-      </div>
-
-      <div class="servico_card">
-        <div class="servico_img" style="background-image:url('massa.jpg')"></div>
-        <div class="servico_info">
-          <h3>Massagem</h3>
-          <p>Relaxamento e recuperação pós-serviço.</p>
-          <span>R$ 50</span>
-        </div>
-      </div>
 
     </div>
-  </div>
 </section>
 
-    <section id="profissionais" class="profissionais">
+<section id="profissionais" class="profissionais">
     <div class="container">
+
         <h2>Profissionais</h2>
 
         <div class="servicos_lista">
@@ -204,64 +166,60 @@
             </div>
 
         </div>
+
     </div>
 </section>
 
 <section id="informacoes" class="informacoes">
-  <div class="container">
-    <h2>Informações</h2>
+    <div class="container">
 
-    <div class="info_grid">
+        <h2>Informações</h2>
 
-      <!--HORARIO -->
-      <div class="info_card">
-        <h3>Horário de Funcionamento</h3>
-        <p>Segunda a Sábado</p>
-        <p>09:00 - 19:00</p>
-      </div>
+        <div class="info_grid">
 
-      <!--LOCALIZAÇÃO-->
-      <div class="info_card">
-        <h3>Localização</h3>
-        <p>Rua Exemplo, 123</p>
-        <p>Centro - Sua Cidade</p>
+            <div class="info_card">
+                <h3>Horário de Funcionamento</h3>
+                <p>Segunda a Sábado</p>
+                <p>09:00 - 19:00</p>
+            </div>
 
-        <a 
-          href="https://www.google.com/maps" 
-          target="_blank"
-          class="map_link"
-        >
-          Abrir no Google Maps
-        </a>
-      </div>
+            <div class="info_card">
+                <h3>Localização</h3>
+                <p>Rua Exemplo, 123</p>
+                <p>Centro - Sua Cidade</p>
 
-      <!--ATENDIMENTO-->
-      <div class="info_card">
-        <h3>Atendimento</h3>
-        <p>Agendamento via WhatsApp</p>
-        <p>Resposta média: 5 min</p>
-      </div>
+                <a href="https://www.google.com/maps" target="_blank" class="map_link">
+                    Abrir no Google Maps
+                </a>
+            </div>
+
+            <div class="info_card">
+                <h3>Atendimento</h3>
+                <p>Agendamento via WhatsApp</p>
+                <p>Resposta média: 5 min</p>
+            </div>
+
+        </div>
+
+        <div class="map_container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18..."
+                loading="lazy">
+            </iframe>
+        </div>
 
     </div>
-
-    <!--MAPA-->
-    <div class="map_container">
-      <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18..."
-        loading="lazy"
-      ></iframe>
-    </div>
-
-  </div>
 </section>
+
 </main>
 
 <footer>
 <div class="container">
-        <p>© 2026 NOME DA BARBEARIA - Todos os direitos reservados</p>
+    <p>© 2026 NOME DA BARBEARIA - Todos os direitos reservados</p>
 </div>
 </footer>
 
 <script src="script.js"></script>
+
 </body>
 </html>
