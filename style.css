@@ -408,11 +408,10 @@ nav a:hover::after {
     color: var(--dourado);
 }
 
-/*SCROLL REVEAL BASE*/
+/*SCROLL REVEAL*/
 .reveal {
     opacity: 0;
     transform: translateY(30px);
-    transition: all 0.6s ease;
 }
 
 .reveal.active {
