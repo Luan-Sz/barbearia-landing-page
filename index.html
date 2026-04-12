@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NOME DA SUA EMPRESA BARBER SHOP</title>
+<title>POLLOS SURDOS BARBER SHOP</title>
 
 <meta name="description" content="Barbearia especializada em cortes clássicos e modernos. Agende seu horário online de forma rápida e prática.">
 <meta name="keywords" content="barbearia, corte masculino, barba, fade, agendamento barbearia">
-<meta name="author" content="Nome da Barbearia">
+<meta name="author" content="Barber Pollos Surdos">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -16,16 +16,28 @@
 
 <body>
 
-<header>
-<nav>
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#servicos">Serviços</a></li>
-        <li><a href="#profissionais">Profissionais</a></li>
-        <li><a href="#marcacao">Marcação</a></li>
-        <li><a href="#informacoes">Informações</a></li>
-    </ul>
-</nav>
+<header class="header">
+    <div class="nav_container">
+
+        <div class="logo">
+            <a href="#home">Barber Pollos <span>&</span> Surdos</a>
+        </div>
+
+        <nav class="nav_menu">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#profissionais">Profissionais</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#informacoes">Informações</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav_cta">
+            <a href="#marcacao">Agendar</a>
+        </div>
+
+    </div>
 </header>
 
 <main>
@@ -33,27 +45,99 @@
 <section id="home" class="hero">
     <div class="container hero_layout">
 
-        <div class="hero_left">
-            <h1 class="titulo_hero">
-                NOME DA BARBEARIA
-            </h1>
+        <div class="hero_titulo_left">
+            <h1 class="titulo_hero">Barber Pollos <span>&</span> Surdos</h1>
+        </div>    
 
-            <h2 class="hero_frase_1">
-                ONDE A <span class="tradicao">TRADIÇÃO</span> ENCONTRA O <span class="moderno">MODERNO</span>
-            </h2>
+        <div class="hero_badge_left">
+            <div class="hero_badge">Desde 1945</div>
         </div>
 
-        <div class="hero_center">
-            <a href="#marcacao" class="hero_cta">
-                Agendar agora
-            </a>
+    <div class="hero_frase_1_left">
+        <h2 class="hero_frase_1">
+            Onde a tradição encontra o moderno.
+        </h2>
+    </div>
+
+</div>
+
+</section>
+
+<section class="sobre">
+    <div class="container sobre_layout">
+
+        <div class="sobre_img">
+            <img src="img/cadeira.jpg" alt="Ambiente da barbearia">
         </div>
 
-        <div class="hero_right">
-            <h3>Sobre Nós</h3>
+        <div class="sobre_texto">
+            <h2 class="section_title sobre_titulo">Sobre a barbearia</h2>
             <p>
-                Somos uma barbearia dedicada à tradição do corte clássico com técnicas modernas, oferecendo experiência, precisão e atendimento de alto nível.
+                Tradição e técnica moderna em um ambiente pensado
+                para conforto e precisão.
             </p>
+        </div>
+
+    </div>
+</section>
+
+<section class="galeria">
+    <div class="container">
+
+        <h2 class="section_title galeria_titulo">Ambiente & Produtos</h2>
+
+        <div class="galeria_grid">
+
+            <div class="img grande">
+                <img src="img/cutting.avif">
+            </div>
+
+            <div class="img">
+                <img src="img/profutos.avif">
+            </div>
+
+            <div class="img">
+                <img src="img/produtos_2.avif">
+            </div>
+
+            <div class="img grande">
+                <img src="img/produtos_3.avif">
+            </div>
+
+            <div class="img">
+                <img src="img/produtos_4.jpg">
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="processo">
+    <div class="container">
+
+        <h2 class="section_title processo_titulo">Nosso Atendimento</h2>
+
+        <div class="processo_grid">
+
+            <div class="processo_item">
+                <img src="img/pente_cabelo.jpg">
+                <h3>Análise e preparação</h3>
+                <p>Entendemos seu estilo e preparamos o cabelo para o corte ideal.</p>
+            </div>
+
+            <div class="processo_item">
+                <img src="img/hair.jpg">
+                <h3>Corte profissional</h3>
+                <p>Técnica precisa com acabamento moderno e detalhado.</p>
+            </div>
+
+            <div class="processo_item">
+                <img src="img/hidratacao.avif">
+                <h3>Finalização e cuidado</h3>
+                <p>Produtos premium e finalização para máximo resultado.</p>
+            </div>
+
         </div>
 
     </div>
@@ -62,7 +146,7 @@
 <section id="marcacao" class="marcacao">
     <div class="container">
 
-        <h2>Agende seu Horário</h2>
+        <h2 class="section_title marcacao_titulo">Agende seu Horário</h2>
 
         <form id="form_agendamento">
 
@@ -86,7 +170,7 @@
                 <option value="">Sem preferencia de profissional</option>
                 <option value="manfred">Manfred Godoy</option>
                 <option value="william">William Cosair</option>
-                <option value="sell">Sell Inras</option>
+                <option value="bruno">Bruno Salamanca</option>
             </select>
 
             <label for="data">Data</label>
@@ -105,13 +189,13 @@
 <section id="servicos" class="servicos">
     <div class="container">
 
-        <h2>Serviços</h2>
+        <h2 class="section_title servico_titulo">Serviços</h2>
 
         <div class="servicos_grid">
 
             <div class="reveal">
-                <div class="servico_card">
-                    <div class="servico_img" style="background-image:url('img/cutting.avif')"></div>
+                <div class="servico_card" data-servico="corte">
+                    <div class="servico_img" style="background-image:url('img/corte_2.avif')"></div>
                     <div class="servico_info">
                         <h3>Corte Clássico</h3>
                         <p>Precisão, estilo e acabamento profissional.</p>
@@ -121,7 +205,7 @@
             </div>
 
             <div class="reveal">
-                <div class="servico_card">
+                <div class="servico_card" data-servico="barba">
                     <div class="servico_img" style="background-image:url('img/barba_2.avif')"></div>
                     <div class="servico_info">
                         <h3>Barba</h3>
@@ -132,7 +216,7 @@
             </div>
 
             <div class="reveal">
-                <div class="servico_card">
+                <div class="servico_card" data-servico="corte_barba">
                     <div class="servico_img" style="background-image:url('img/corte_1.avif')"></div>
                     <div class="servico_info">
                         <h3>Corte + Barba</h3>
@@ -143,7 +227,7 @@
             </div>
 
             <div class="reveal">
-                <div class="servico_card">
+                <div class="servico_card" data-servico="massagem">
                     <div class="servico_img" style="background-image:url('img/massa.jpg')"></div>
                     <div class="servico_info">
                         <h3>Massagem</h3>
@@ -160,24 +244,49 @@
 <section id="profissionais" class="profissionais">
     <div class="container">
 
-        <h2>Profissionais</h2>
+        <h2 class="section_title profissionais_titulo">Profissionais</h2>
 
-        <div class="servicos_lista">
+        <div class="profissionais_grid">
 
-            <div class="item reveal">
-                <h3>Manfred Godoy</h3>
-                <p>Especialista em cortes clássicos</p>
+        <div class="prof_card" data-profissional="manfred">
+            <img src="img/profissional_manfred.jpeg">
+
+            <h3>Manfred <span class="sobrenome">Godoy</span></h3>
+    
+            <p>Especialista em cortes clássicos</p>
+
+            <div class="extra_info">
+                <p>+10 anos de experiência</p>
+                <p>Especialista em tesoura e acabamento</p>
             </div>
 
-            <div class="item reveal">
-                <h3>William Cosair</h3>
-                <p>Fade e degradê moderno</p>
-            </div>
+        </div>
 
-            <div class="item reveal">
-                <h3>Sell Inras</h3>
-                <p>Barba e acabamento premium</p>
+        <div class="prof_card" data-profissional="william">
+            <img src="img/profissional_2.avif" alt="William Cosair">
+
+            <h3>William <span class="sobrenome">Cosair</span></h3>
+    
+            <p>Especialista em fade e degradê</p>
+
+            <div class="extra_info">
+                <p>Especialista em fade</p>
+                <p>Alta precisão em degradê</p>
             </div>
+        </div>
+
+        <div class="prof_card" data-profissional="bruno">
+            <img src="img/profissional_4.jpg" alt="Bruno Salamanca">
+
+            <h3>Bruno <span class="sobrenome">Salamanca</span></h3>
+    
+            <p>Especialista em Barba</p>
+
+            <div class="extra_info">
+                <p>Barba premium e acabamento</p>
+                <p>Especialista em Navalha e Tesoura</p>
+            </div>
+        </div>
 
         </div>
 
@@ -187,7 +296,7 @@
 <section id="informacoes" class="informacoes">
     <div class="container">
 
-        <h2>Informações</h2>
+        <h2 class="section_title informacoes_titulo">Informações</h2>
 
         <div class="info_grid">
 
@@ -199,8 +308,8 @@
 
             <div class="info_card reveal">
                 <h3>Localização</h3>
-                <p>Rua Exemplo, 123</p>
-                <p>Centro - Sua Cidade</p>
+                <p>Rua Exemplo, 05</p>
+                <p>Centro - Fortaleza CE</p>
 
                 <a href="https://www.google.com/maps" target="_blank" class="map_link">
                     Abrir no Google Maps
@@ -228,9 +337,11 @@
 </main>
 
 <footer>
-<div class="container">
-    <p>© 2026 NOME DA BARBEARIA - Todos os direitos reservados</p>
-</div>
+    <div class="container">
+        <div class="footer">
+        <p>© 2026 Barber Pollos Surdos - Todos os direitos reservados</p>
+        </div>
+    </div>
 </footer>
 
 <script src="script.js"></script>

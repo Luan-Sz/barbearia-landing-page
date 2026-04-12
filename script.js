@@ -134,9 +134,7 @@ function resetButton(botao) {
 }
 
 //SCROLL REVEAL
-const elements = document.querySelectorAll(
-  ".servico_card, .info_card, .item, .hero_frases"
-);
+const elements = document.querySelectorAll(".reveal");
 
 function revealOnScroll() {
     const windowHeight = window.innerHeight;
@@ -146,9 +144,56 @@ function revealOnScroll() {
 
         if (top < windowHeight - 100) {
             el.classList.add("active");
+        } else {
+            el.classList.remove("active"); //RESET SCROLL REVEAL
         }
     });
 }
-
 window.addEventListener("scroll", revealOnScroll);
 revealOnScroll();
+
+//CLIQUE SECAO PROFISSIONAL CARDS
+const cards = document.querySelectorAll(".prof_card");
+
+cards.forEach(card => {
+    card.addEventListener("click", () => {
+        const profissional = card.getAttribute("data-profissional");
+
+        //scroll suave
+        const section = document.getElementById("marcacao");
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+
+        //selecionar profissional no form
+        setTimeout(() => {
+            const select = document.getElementById("profissional");
+            if (select) {
+                select.value = profissional;
+            }
+        }, 500);
+    });
+});
+
+//CLIQUE SECAO SERVICOS CARDS
+const servicos = document.querySelectorAll(".servico_card");
+
+servicos.forEach(card => {
+    card.addEventListener("click", () => {
+        const servico = card.getAttribute("data-servico");
+
+        //scroll suave
+        const section = document.getElementById("marcacao");
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+
+        //selecionar serviço
+        setTimeout(() => {
+            const select = document.getElementById("servico");
+            if (select) {
+                select.value = servico;
+            }
+        }, 500);
+    });
+});
