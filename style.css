@@ -358,15 +358,17 @@ select:focus {
 
 /*ESTILO HEADER*/
 /* Corrigindo a posição do Header para não cobrir a Hero */
-position: sticky;
-    position: fixed; /* Mude de sticky para fixed se quiser que ele flutue sempre */
+.header {
+    position: fixed; /* Fixa o menu no topo */
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    background: rgba(13, 13, 13, 0.9);
-    backdrop-filter: blur(10px);
+    background: rgba(13, 13, 13, 0.9); /* Fundo escuro com leve transparência */
+    backdrop-filter: blur(10px); /* Efeito de vidro embaçado */
     border-bottom: 1px solid rgba(198, 169, 107, 0.1);
+    transition: all 0.3s ease;
+}
 
 /*ESTILO NAV*/
 .nav_container {
