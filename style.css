@@ -183,8 +183,11 @@ a {
 
 .hero_frase_1 {
     font-size: 18px;
-    opacity: 0.85;
-    max-width: 500px;
+    opacity: 0.75;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 .tradicao { color: var(--dourado); }
