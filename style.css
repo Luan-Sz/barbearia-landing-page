@@ -190,6 +190,13 @@ a {
     gap: 10px;
 }
 
+.linha_dourada {
+    width: 60px;
+    height: 2px;
+    background: var(--dourado);
+    margin: 10px auto 0;
+}
+
 .tradicao { color: var(--dourado); }
 .moderno { color: var(--vinho); }
 
