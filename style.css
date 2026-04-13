@@ -406,44 +406,42 @@ select:focus {
 }
 
 /*BOTÃO CTA*/
-/* Use esta versão para garantir que as cores sejam respeitadas */
-.hero_cta_container .btn_vintage {
-    display: inline-block; /* Garante que o padding funcione bem */
+/* BLINDAGEM TOTAL DO BOTÃO */
+.hero_cta_container a.btn_vintage, 
+.hero_cta_container a.btn_vintage:visited,
+.hero_cta_container a.btn_vintage:link {
+    display: inline-block !important;
     position: relative;
-    padding: 18px 45px;
-    font-family: 'Playfair Display', serif;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 4px;
+    padding: 18px 45px !important;
+    font-family: 'Playfair Display', serif !important;
+    font-size: 14px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 4px !important;
     
-    /* COR DO TEXTO (Forçando para não ficar azul) */
+    /* Cores que matam o azul do navegador */
     color: #d1d1d1 !important; 
     text-decoration: none !important;
     
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    
-    /* FUNDO VINHO RUSTED */
+    /* Fundo Vinho */
     background: linear-gradient(135deg, #4b1e1e 0%, #2b0f0f 50%, #1a0808 100%) !important;
-    border: 1px solid rgba(198, 169, 107, 0.4);
+    border: 1px solid rgba(198, 169, 107, 0.4) !important;
     
-    box-shadow: 
-        0 15px 35px rgba(0,0,0,0.6),
-        inset 0 1px 1px rgba(255,255,255,0.1);
-    
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6) !important;
     overflow: hidden;
     cursor: pointer;
+    z-index: 5;
 }
 
-/* Hover corrigido */
-.hero_cta_container .btn_vintage:hover {
+/* Hover para garantir que não mude para azul ao passar o mouse */
+.hero_cta_container a.btn_vintage:hover {
     color: #ffffff !important;
-    border-color: #c6a96b !important;
-    transform: translateY(-3px);
     background: linear-gradient(135deg, #5e2626 0%, #3a1515 100%) !important;
+    border-color: #c6a96b !important;
+    transform: translateY(-3px) !important;
 }
 
-/* Mantém a textura sobre o vinho */
-.hero_cta_container .btn_vintage::before {
+/* Textura de grão */
+.hero_cta_container a.btn_vintage::before {
     content: "";
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
