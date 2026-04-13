@@ -188,9 +188,8 @@ a {
 .hero_frase_1 {
     font-size: 18px;
     opacity: 0.75;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    /* Removido flex-direction e align-items que não fazem sentido em tag <p> sem display flex */
+    margin-top: 10px;
 }
 
 .linha_dourada {
@@ -406,38 +405,55 @@ select:focus {
 }
 
 /*BOTÃO CTA*/
-/* BLINDAGEM TOTAL DO BOTÃO */
-.hero_cta_container a.btn_vintage, 
-.hero_cta_container a.btn_vintage:visited,
-.hero_cta_container a.btn_vintage:link {
+/* Estilo Unificado para os CTAs */
+.hero_cta_container a.btn_vintage,
+.nav_cta a {
     display: inline-block !important;
     position: relative;
-    padding: 18px 45px !important;
     font-family: 'Playfair Display', serif !important;
-    font-size: 14px !important;
     text-transform: uppercase !important;
-    letter-spacing: 4px !important;
-    
-    /* Cores que matam o azul do navegador */
-    color: #d1d1d1 !important; 
+    letter-spacing: 3px !important; /* Reduzi de 4px para 3px para suavizar */
+    color: #d1d1d1 !important;
     text-decoration: none !important;
-    
-    /* Fundo Vinho */
-    background: linear-gradient(135deg, #4b1e1e 0%, #2b0f0f 50%, #1a0808 100%) !important;
-    border: 1px solid rgba(198, 169, 107, 0.4) !important;
-    
-    box-shadow: 0 15px 35px rgba(0,0,0,0.6) !important;
+    background: linear-gradient(135deg, #3d1919 0%, #2b0f0f 100%) !important; /* Gradiente mais suave */
+    border: 1px solid rgba(198, 169, 107, 0.3) !important; /* Borda mais discreta */
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
     overflow: hidden;
     cursor: pointer;
     z-index: 5;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4) !important; /* Sombra reduzida para leveza */
 }
 
-/* Hover para garantir que não mude para azul ao passar o mouse */
-.hero_cta_container a.btn_vintage:hover {
+/* Diferença de Padding entre Nav e Hero */
+.hero_cta_container a.btn_vintage {
+    padding: 16px 40px !important;
+    font-size: 14px !important;
+}
+
+.nav_cta a {
+    padding: 8px 20px !important;
+    font-size: 12px !important;
+    border-radius: 4px; /* Pequeno arredondamento para a barra */
+}
+
+/* Efeito de Hover Unificado */
+.hero_cta_container a.btn_vintage:hover,
+.nav_cta a:hover {
     color: #ffffff !important;
-    background: linear-gradient(135deg, #5e2626 0%, #3a1515 100%) !important;
+    background: linear-gradient(135deg, #4b1e1e 0%, #3a1515 100%) !important;
     border-color: #c6a96b !important;
-    transform: translateY(-3px) !important;
+    transform: translateY(-2px) !important; /* Subida mais leve */
+    box-shadow: 0 12px 25px rgba(0,0,0,0.5) !important;
+}
+
+/* Textura sutil apenas no botão grande (opcional) */
+.hero_cta_container a.btn_vintage::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+    opacity: 0.1; /* Mais transparente para ser mais suave */
+    pointer-events: none;
 }
 
 /* Textura de grão */
@@ -446,24 +462,8 @@ select:focus {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
-    opacity: 0.15;
-    pointer-events: none;
-}
-.nav_cta a {
-    padding: 8px 18px;
-    background: var(--vinho);
-    color: white;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: 0.3s;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-}
 
-.nav_cta a:hover {
-    background: var(--dourado);
-    color: black;
-    transform: translateY(-1px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    pointer-events: none;
 }
 
 /*ESTILO SERVIÇOS*/
