@@ -162,18 +162,17 @@ a {
 }
 
 .hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
     background: linear-gradient(
         to right,
-        rgba(13,13,13,0.85),
-        rgba(13,13,13,0.4)
+        rgba(0,0,0,0.85),
+        rgba(0,0,0,0.6),
+        rgba(0,0,0,0.85)
     );
 }
 
 .titulo_hero {
-    font-size: 58px;
+    font-size: 64px;
+    font-weight: 700;
     color: var(--dourado);
     line-height: 1.1;
 }
@@ -184,7 +183,8 @@ a {
 
 .hero_frase_1 {
     font-size: 18px;
-    opacity: 0.75;
+    opacity: 0.85;
+    max-width: 500px;
 }
 
 .tradicao { color: var(--dourado); }
@@ -399,8 +399,10 @@ select:focus {
 }
 
 .hero_cta_bottom a {
-    padding: 12px 26px;
     background: var(--vinho);
+    padding: 14px 28px;
+    font-size: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     color: white;
     border-radius: 6px;
     font-weight: 600;
