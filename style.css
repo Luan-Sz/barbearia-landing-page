@@ -138,73 +138,27 @@ a {
     position: relative;
     min-height: 100vh;
     display: flex;
-    align-items: flex-start;
-    padding-top: 140px;
-    justify-content: flex-start;
-    padding: 0 40px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 60px;
+    align-items: center;
+
+    padding: 80px 20px;
     background: url("img/ambient_4.avif") center/cover no-repeat;
 }
 
-.hero_layout {
-    max-width: 1200px;
-    width: 100%;
-}
-
-.hero .container {
-    margin: 0;
-}
-
-.hero_titulo_left {
-    margin-left: -50px;
-    max-width: 520px;
-
+.hero_content {
+    text-align: center;
+    z-index: 2;
     display: flex;
     flex-direction: column;
-
-    height: 20vh;
+    gap: 15px;
 }
 
-.hero_badge_left {
-    margin-left: -45px;
-    margin-top: -120px;
+.hero_badge {
     font-size: 13px;
     letter-spacing: 2px;
-    opacity: 0.5;
-}
-
-.hero_frase_1_left {
-    margin-left: -45px;
-    margin-top: -20px;
-    font-size: 18px;
-    opacity: 0.75;
-    max-width: 420px;
-}
-
-.hero_right h3 {
-    margin-bottom: 10px;
-    font-size: 18px;
-    color: var(--dourado);
-}
-
-
-/* CTA DO MEIO */
-.hero_cta {
-    padding: 14px 28px;
-    background: var(--vinho);
-    color: white;
-    font-weight: 600;
-    border-radius: 6px;
-    transition: 0.3s ease;
-    display: inline-block;
-    letter-spacing: 1px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
-
-.hero_cta:hover {
-    background: var(--dourado);
-    color: black;
-    transform: scale(1.05);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.45);
+    opacity: 0.6;
 }
 
 .hero::before {
@@ -218,55 +172,19 @@ a {
     );
 }
 
-.hero_frases {
-    position: relative;
-    z-index: 1;
-    max-width: 700px;
-}
-
 .titulo_hero {
-    font-family: 'Playfair Display', serif;
     font-size: 58px;
-    line-height: 1.1;
     color: var(--dourado);
-    margin-top: 0;
-    white-space: nowrap;
+    line-height: 1.1;
 }
 
 .titulo_hero span {
     color: var(--dourado);
 }
 
-.hero_scroll {
-    position: absolute;
-    bottom: 30px;
-    left: 40px;
-    font-size: 13px;
-    letter-spacing: 2px;
-    opacity: 0.6;
-    cursor: pointer;
-}
-
-.hero_scroll::after {
-    content: "";
-    display: block;
-    width: 1px;
-    height: 40px;
-    background: white;
-    margin-top: 8px;
-    opacity: 0.5;
-}
-
 .hero_frase_1 {
     font-size: 18px;
-    line-height: 1.5;
     opacity: 0.75;
-    max-width: 420px;
-    margin-top: 25px;
-}
-
-.hero_frase_2 {
-    opacity: 0.8;
 }
 
 .tradicao { color: var(--dourado); }
@@ -476,25 +394,17 @@ select:focus {
 
 /*BOTÃO CTA*/
 .hero_cta_bottom {
-    margin-top: 40px;
-    align-self: flex-start;
-
-    padding: 10px 22px;
-    border-radius: 25px;
-
-    background: transparent;
-    border: 1px solid var(--dourado);
-
-    color: var(--dourado);
-    font-size: 13px;
-    letter-spacing: 1px;
-
-    transition: 0.3s;
+    margin-bottom: 40px;
+    z-index: 2;
 }
 
-.hero_cta_bottom:hover {
-    background: var(--dourado);
-    color: black;
+.hero_cta_bottom a {
+    padding: 12px 26px;
+    background: var(--vinho);
+    color: white;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
 }
 
 .nav_cta a {
