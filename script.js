@@ -3,29 +3,29 @@ document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("form_agendamento");
 
     if (!form) {
-        console.error("Form não encontrado");
+        console.error("Ops! O formulário de agendamento não foi encontrado no HTML.");
         return;
     }
 
-    //FORMATAR TELEFONE
+    //FORMATAR TELEFONE - Deixando o campo bonitinho enquanto o usuário digita
     const telefoneInput = document.getElementById("telefone");
 
     if (telefoneInput) {
         telefoneInput.addEventListener("input", function () {
-        let valor = this.value.replace(/\D/g, "");
+            let valor = this.value.replace(/\D/g, "");
 
-        if (valor.length > 11) {
-            valor = valor.slice(0, 11);
-        }
+            if (valor.length > 11) {
+                valor = valor.slice(0, 11);
+            }
 
-        valor = valor.replace(/^(\d{2})(\d)/g, "($1) $2");
-        valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
+            valor = valor.replace(/^(\d{2})(\d)/g, "($1) $2");
+            valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
 
-        this.value = valor;
+            this.value = valor;
         });
     }
 
-    //LIMITAR DATA 
+    //LIMITAR DATA - Evita que o cliente tente agendar no passado
     const inputData = document.getElementById("data");
 
     if (inputData) {
@@ -36,30 +36,31 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        //BOTAO
+        //BOTAO - Aqui a gente dá aquele feedback visual pro cliente não clicar duas vezes
         const botao = form.querySelector("button");
+        const originalText = "Agendar pelo WhatsApp";
 
         if (botao) {
-            botao.innerText = "Enviando...";
+            botao.style.width = `${botao.offsetWidth}px`; // Mantém o tamanho pra não balançar o layout
+            botao.innerHTML = '<span>Processando...</span>'; 
             botao.disabled = true;
+            botao.style.opacity = "0.7";
         }
 
         //CAMPOS BÁSICOS
         const nome = document.getElementById("nome").value.trim();
         const telefone = document.getElementById("telefone").value.trim();
 
-        //SERVIÇO
+        //SERVIÇO - Pegando o texto bonitinho que está no select
         const servicoSelect = document.getElementById("servico");
-
         let servico = "Não informado";
 
         if (servicoSelect && servicoSelect.value) {
             servico = servicoSelect.selectedOptions[0].text;
         }
 
-        //PROFISSIONAL
+        //PROFISSIONAL - Verificando se o cliente escolheu alguém ou se está de boa com qualquer um
         const profissionalSelect = document.getElementById("profissional");
-
         let profissional = profissionalSelect?.value
             ? profissionalSelect.selectedOptions[0].text
             : "Qualquer profissional";
@@ -71,53 +72,58 @@ document.addEventListener("DOMContentLoaded", function () {
         const data = dataInput ? dataInput.value : "";
         const hora = horaInput ? horaInput.value : "";
 
-        //VALIDAÇÃO EXTRA
+        //VALIDAÇÃO EXTRA - Aquela checada rápida pra ver se os dados fazem sentido
         if (nome.length < 2) {
-            alert("Nome muito curto");
+            destacarErro("nome");
+            alert("Por favor, digite seu nome completo.");
+            resetButton(botao);
             return;
         }
 
         const telefoneLimpo = telefone.replace(/\D/g, "");
         if (telefoneLimpo.length < 10) {
-            alert("Telefone inválido");
-            return;
-        }
-
-        if (!data || !hora) {
-            alert("Data e hora obrigatórias");
+            destacarErro("telefone");
+            alert("O número de telefone parece estar incompleto.");
             resetButton(botao);
             return;
         }
 
-        //FORMATAR DATA
+        if (!data || !hora) {
+            alert("Precisamos saber o dia e a hora do seu agendamento.");
+            if (!data) destacarErro("data");
+            if (!hora) destacarErro("hora");
+            resetButton(botao);
+            return;
+        }
+
+        //FORMATAR DATA - Transformando o padrão do sistema (ano-mes-dia) para o nosso (dia/mes/ano)
         let dataFormatada = data;
         if (data.includes("-")) {
             const partes = data.split("-");
             dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
         }
 
-        //MENSAGEM MARCACAO
+        //MENSAGEM MARCACAO - Preparando o texto que vai chegar no Zap do barbeiro
         const mensagem = `Olá, gostaria de agendar um horário:
 
-        Nome: ${nome}
-        Telefone: ${telefoneLimpo}
-        Serviço: ${servico}
-        Profissional: ${profissional}
-        Data: ${dataFormatada}
-        Hora: ${hora}`;
+Nome: ${nome}
+Telefone: ${telefone}
+Serviço: ${servico}
+Profissional: ${profissional}
+Data: ${dataFormatada}
+Hora: ${hora}`;
 
         const mensagemFormatada = encodeURIComponent(mensagem);
-
-        const numero = "5588999978808";
-
+        const numero = "5588999978808"; 
         const link = `https://wa.me/${numero}?text=${mensagemFormatada}`;
 
         //REDIRECIONAMENTO SEGURO
-        const confirmar = confirm("Confirmar agendamento e abrir WhatsApp?");
+        const confirmar = confirm("Tudo pronto! Podemos abrir o seu WhatsApp para finalizar o agendamento?");
         
         if (confirmar) {
-            resetButton(botao);
             window.location.href = link;
+            // Damos um tempinho para o navegador abrir o link antes de resetar o botão
+            setTimeout(() => resetButton(botao), 2000);
             return;
         }
 
@@ -126,14 +132,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+// Função amiga para resetar o botão caso algo dê errado ou o usuário cancele
 function resetButton(botao) {
     if (botao) {
         botao.innerText = "Agendar pelo WhatsApp";
         botao.disabled = false;
+        botao.style.opacity = "1";
     }
 }
 
-//SCROLL REVEAL
+//SCROLL REVEAL - Aquele efeito suave das seções aparecendo ao rolar a página
 const elements = document.querySelectorAll(".reveal");
 
 function revealOnScroll() {
@@ -152,48 +160,65 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll);
 revealOnScroll();
 
-//CLIQUE SECAO PROFISSIONAL CARDS
+//CLIQUE SECAO PROFISSIONAL CARDS - Preenche o nome do barbeiro automaticamente
 const cards = document.querySelectorAll(".prof_card");
 
 cards.forEach(card => {
     card.addEventListener("click", () => {
         const profissional = card.getAttribute("data-profissional");
 
-        //scroll suave
+        //scroll suave até o formulário
         const section = document.getElementById("marcacao");
         if (section) {
             section.scrollIntoView({ behavior: "smooth" });
         }
 
-        //selecionar profissional no form
+        //selecionar profissional no form e focar no próximo passo (data)
         setTimeout(() => {
             const select = document.getElementById("profissional");
             if (select) {
                 select.value = profissional;
+                document.getElementById("data").focus(); 
             }
         }, 500);
     });
 });
 
-//CLIQUE SECAO SERVICOS CARDS
+//CLIQUE SECAO SERVICOS CARDS - Preenche o serviço automaticamente
 const servicos = document.querySelectorAll(".servico_card");
 
 servicos.forEach(card => {
     card.addEventListener("click", () => {
         const servico = card.getAttribute("data-servico");
 
-        //scroll suave
+        //scroll suave até o formulário
         const section = document.getElementById("marcacao");
         if (section) {
             section.scrollIntoView({ behavior: "smooth" });
         }
 
-        //selecionar serviço
+        //selecionar serviço no form e focar no próximo passo (profissional)
         setTimeout(() => {
             const select = document.getElementById("servico");
             if (select) {
                 select.value = servico;
+                document.getElementById("profissional").focus();
             }
         }, 500);
     });
 });
+
+//NOTIFICAR ERRO USUARIO - Faz o campo brilhar em vermelho pra chamar atenção
+function destacarErro(idCampo) {
+    const campo = document.getElementById(idCampo);
+    if (!campo) return;
+
+    campo.style.borderColor = "#ff4b4b";
+    campo.style.transition = "all 0.3s";
+    
+    setTimeout(() => {
+        campo.style.borderColor = ""; // Volta para o padrão do CSS
+    }, 2000);
+    
+    campo.focus();
+}
