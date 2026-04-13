@@ -163,7 +163,6 @@ a {
     position: absolute;
     inset: 0;
     content: "";
-    position: absolute;
     inset: 0;
     background: linear-gradient(
         to right,
@@ -430,27 +429,32 @@ select:focus {
     background: transparent;
     color: var(--dourado);
 
-    padding: 10px 18px; /* menor */
-    font-size: 14px;
+    padding: 9px 16px; /* levemente mais fino */
 
-    border: 1px solid rgba(198, 169, 107, 0.6);
+    font-size: 13px; /* menos moderno */
+
+    border: 1px solid rgba(198, 169, 107, 0.5);
+
     border-radius: 2px;
 
-    letter-spacing: 2px;
+    letter-spacing: 2.5px; /* mais western */
+
     text-transform: uppercase;
 
     box-shadow: none;
 
-    transition: 0.3s ease;
+    transition: 0.35s ease;
 
-    opacity: 0.9;
+    opacity: 0.85;
 }
 
 .hero_cta_bottom a:hover {
-    background: rgba(198, 169, 107, 0.08);
+    background: rgba(198, 169, 107, 0.06);
+
     border-color: var(--dourado);
 
-    transform: translateY(-2px);
+    transform: translateY(-1px);
+
     opacity: 1;
 }
 
