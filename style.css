@@ -181,6 +181,21 @@ a {
     line-height: 1.1;
 }
 
+.ampersand {
+    color: #b8b8b8; /*base silver*/
+    position: relative;
+
+    /* textura leve envelhecida */
+    text-shadow:
+        0 1px 0 rgba(0,0,0,0.6),
+        0 0 6px rgba(255,255,255,0.08);
+
+    opacity: 0.9;
+
+    /* leve nuance “rústica” */
+    filter: contrast(1.1) saturate(0.6);
+}
+
 .titulo_hero span {
     color: var(--dourado);
 }
@@ -407,19 +422,36 @@ select:focus {
 
 /*BOTÃO CTA*/
 .hero_cta_bottom {
-    margin-bottom: 40px;
+    margin-bottom: 70px;
     z-index: 2;
 }
 
 .hero_cta_bottom a {
-    background: var(--vinho);
-    padding: 14px 28px;
-    font-size: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    color: white;
-    border-radius: 6px;
-    font-weight: 600;
-    text-decoration: none;
+    background: transparent;
+    color: var(--dourado);
+
+    padding: 10px 18px; /* menor */
+    font-size: 14px;
+
+    border: 1px solid rgba(198, 169, 107, 0.6);
+    border-radius: 2px;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    box-shadow: none;
+
+    transition: 0.3s ease;
+
+    opacity: 0.9;
+}
+
+.hero_cta_bottom a:hover {
+    background: rgba(198, 169, 107, 0.08);
+    border-color: var(--dourado);
+
+    transform: translateY(-2px);
+    opacity: 1;
 }
 
 .nav_cta a {
