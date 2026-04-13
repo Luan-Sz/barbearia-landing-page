@@ -33,6 +33,9 @@
     --vinho: #4b1e1e;
     --dourado: #c6a96b;
     --cinza: #1a1a1a;
+
+    --background-suave: #141414;
+    --texto-corpo: #d1d1d1
 }
 
 section {
@@ -82,6 +85,9 @@ body {
     letter-spacing: 0.3px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    color: var(--texto-corpo);
+    background-color: var(--preto);
 }
 
 /*ESTILO TAGS*/
@@ -351,14 +357,14 @@ select:focus {
 }
 
 /*ESTILO HEADER*/
-.header {
-    position: sticky;
+position: sticky;
     top: 0;
-    z-index: 100;
-    background: rgba(13, 13, 13, 0.6);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(198, 169, 107, 0.15);
-}
+    z-index: 1000;
+    background: rgba(13, 13, 13, 0.8); /* Um pouco mais de transparência */
+    backdrop-filter: blur(15px); /* Desfoque mais forte */
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(198, 169, 107, 0.1); /* Borda dourada bem sutil */
+    transition: all 0.3s ease;
 
 /*ESTILO NAV*/
 .nav_container {
