@@ -1,5 +1,5 @@
 const CONFIG = {
-    whatsappNumero: "5588999978808", //NUMERO AGENDAMENTO
+    whatsappNumero: "5588999978808", //NUMERO DO AGENDAMENTO
 };
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         inputData.setAttribute("min", hoje);
     }
 
-    //ENVIO FORM
+    //ENVIAR FORM
     form.addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
             botao.style.opacity = "0.7";
         }
 
-        //Captura os dados crus
+        //CAPTURA DADOS
         const nome = document.getElementById("nome").value.trim();
         const telefone = document.getElementById("telefone").value.trim();
         const servicoSelect = document.getElementById("servico");
@@ -53,18 +53,16 @@ document.addEventListener("DOMContentLoaded", function () {
             resetButton(botao);
             return;
         }
-
-        
         //PREPARAÇÃO PARA O FUTURO BACKEND (JAVA)
        
-        // Em vez de só montar texto, criamos um objeto JSON estruturado.
-        // É exatamente isso que seu Spring Boot vai receber no futuro (@RequestBody).
+        //objeto JSON estruturado.
+        //Spring Boot vai receber no futuro (@RequestBody).
         const agendamentoPayload = {
             clienteNome: nome,
             clienteTelefone: telefone.replace(/\D/g, ""), // Manda só os números pro banco
             servicoId: servicoSelect.value, 
             profissionalId: profissionalSelect.value || "qualquer",
-            dataHoraAgendamento: `${data}T${hora}:00` // Padrão ISO 8601 (O Java LocalDate ama isso)
+            dataHoraAgendamento: `${data}T${hora}:00` // Padrão ISO 8601
         };
 
         // Simulando o envio para a API no console do navegador (F12)
@@ -92,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
             //NOVA ABA REDIRECIONAMENTO
             window.open(link, '_blank'); 
             setTimeout(() => resetButton(botao), 2000);
-            form.reset(); // Limpa o formulário após o sucesso
+            form.reset(); //limpa form apos envio
         } else {
             resetButton(botao);
         }
@@ -151,7 +149,7 @@ function setupCardClick(seletorCard, idSelectForm, dataAttribute, focusTargetId)
                     setTimeout(() => selectTarget.style.borderColor = "", 1500);
 
                     document.getElementById(focusTargetId).focus();
-                }, 600); // Tempo do scroll suave
+                }, 600); //TEMPO SCROLL SUAVE
             }
         });
     });
