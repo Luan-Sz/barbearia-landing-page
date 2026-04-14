@@ -121,14 +121,14 @@ a {
     min-height: 100vh;
     padding: 0 20px;
     background: url("img/ambient_4.avif") center/cover no-repeat;
-    background-attachment: fixed; /* Efeito Parallax suave */
+    background-attachment: fixed; /*PARRALAX*/
 }
 
 .hero::before {
     content: "";
     position: absolute;
     inset: 0;
-    /* Degradê que escurece mais embaixo para dar leitura ao scroll */
+    /*DEGRADE SCROLL*/
     background: linear-gradient(to bottom, rgba(10,10,10,0.6) 0%, rgba(10,10,10,0.9) 100%);
     z-index: 1; 
 }
@@ -141,7 +141,7 @@ a {
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    transform: translateY(-5%); /* Sobe um pouquinho para equilibrar o peso visual */
+    transform: translateY(-5%); /*EQUILIBRAR VISUAL SOBE*/
 }
 
 .hero_badge {
@@ -153,7 +153,7 @@ a {
 }
 
 .titulo_hero {
-    font-size: clamp(40px, 6vw, 75px); /* Se adapta perfeito em qualquer tela */
+    font-size: clamp(40px, 6vw, 75px); /*ADAPTAR PARA TELAS*/
     font-weight: 700;
     color: white;
     line-height: 1;
@@ -181,7 +181,7 @@ a {
     margin: 15px auto 25px;
 }
 
-/* Novo Elemento: Indicador de Scroll */
+/*INDICADOR DE SCROLL*/
 .hero_scroll {
     position: absolute;
     bottom: 40px;
@@ -216,20 +216,19 @@ a {
 }
 
 /*ESTILO SOBRE NOS*/
-/* --- ESTILO SOBRE NÓS --- */
 .sobre {
-    background: #141414; /* Fundo levemente mais claro que o preto para destacar a seção */
+    background: #141414; /*CONTRASTE CLARO*/
     position: relative;
 }
 
 .sobre_layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px; /* Aumentamos o respiro */
+    gap: 60px; 
     align-items: center;
 }
 
-/* Efeito de Moldura Deslocada 3D */
+/*EFEITO MOLDURA 3D*/
 .img_wrapper {
     position: relative;
     z-index: 1;
@@ -237,7 +236,7 @@ a {
 
 .img_wrapper img {
     width: 100%;
-    border-radius: 4px; /* Menos arredondado para um visual mais clássico */
+    border-radius: 4px; /*VISUAL CLASSICO*/
     display: block;
     position: relative;
     z-index: 2;
@@ -264,7 +263,7 @@ a {
     opacity: 1;
 }
 
-/* Tipografia refinada do texto Sobre */
+/*TIPOGRAFIA SOBRE*/
 .sobre_destaque {
     font-size: 18px;
     color: var(--dourado);
@@ -290,7 +289,7 @@ a {
     letter-spacing: 1px;
 }
 
-/* --- NOVO CARD DE TEXTO NA GALERIA --- */
+/*CARDS GALERIA*/
 .galeria_card_texto {
     background: linear-gradient(135deg, var(--vinho) 0%, #2b0f0f 100%);
     border-radius: 10px;
@@ -335,13 +334,13 @@ a {
     transition: transform 0.4s ease;
 }
 
-/*imagens maiores*/
+/*IMAGEM MAIOR*/
 .grande {
     grid-column: span 2;
     grid-row: span 2;
 }
 
-/* efeito elegante */
+/*EFEITO ELEGANTE*/
 .img:hover img {
     transform: scale(1.05);
 }
@@ -351,7 +350,7 @@ a {
     background: linear-gradient(to bottom, var(--preto), #141414);
 }
 
-/* Título centralizado com a linha dourada arrumada */
+/*TITULO CENTRAL E LINHA DOURADA*/
 .titulo_centralizado {
     text-align: center;
     margin-bottom: 60px;
@@ -361,7 +360,7 @@ a {
 }
 
 .titulo_centralizado h2::after {
-    margin: 15px auto 0; /* Garante que a linha dourada fique no centro */
+    margin: 15px auto 0; /*linha dourada no centro*/
 }
 
 .processo_grid {
@@ -370,7 +369,7 @@ a {
     gap: 30px;
 }
 
-/* Cards do Processo */
+/*CARDS PROCESSO*/
 .processo_item {
     position: relative;
     padding: 30px;
@@ -387,14 +386,14 @@ a {
     transform: translateY(-5px);
 }
 
-/* Marca D'água do Número */
+/*MARCA D´GUA NUMERO*/
 .step_num {
     position: absolute;
     top: -10px;
     right: 10px;
     font-size: 100px;
     font-weight: 700;
-    color: rgba(198, 169, 107, 0.05); /* Dourado quase invisível */
+    color: rgba(198, 169, 107, 0.05);
     font-family: 'Playfair Display', serif;
     z-index: 0;
     line-height: 1;
@@ -402,10 +401,10 @@ a {
 }
 
 .processo_item:hover .step_num {
-    color: rgba(198, 169, 107, 0.15); /* Acende levemente no hover */
+    color: rgba(198, 169, 107, 0.15); /*acende o hover*/
 }
 
-/* Garante que o texto e a imagem fiquem acima do número */
+/*texto e imagem acima do numero*/
 .processo_item img,
 .processo_item h3,
 .processo_item p {
@@ -446,11 +445,11 @@ a {
     position: fixed;
     top: 0; left: 0; width: 100%;
     z-index: 1000;
-    /* Fundo escuro elegante com blur forte */
+    /*fundo escuro e blur*/
     background: rgba(10, 10, 10, 0.85); 
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(198, 169, 107, 0.15); /* Dourado bem sutil */
+    border-bottom: 1px solid rgba(198, 169, 107, 0.15);
     transition: all 0.4s ease;
 }
 
@@ -558,9 +557,6 @@ a {
 }
 
 /*ESTILO MARCACAO*/
-/* ==========================================
-   AGENDAMENTO: BARBEARIA PREMIUM
-========================================== */
 .agendamento_barber {
     padding: 100px 0;
     background: url("img/ambient.avif") center/cover fixed;
@@ -571,18 +567,18 @@ a {
     content: "";
     position: absolute;
     inset: 0;
-    /* Fundo bem escuro para destacar apenas a caixa do formulário */
+    /*fundo escuro*/
     background: linear-gradient(to bottom, var(--preto), rgba(15,15,15,0.92));
 }
 
 .form_wrapper {
     max-width: 800px;
     margin: 0 auto;
-    background: #111; /* Cinza super escuro, quase preto */
+    background: #111;
     border-radius: 8px;
     padding: 50px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-    border: 1px solid rgba(198, 169, 107, 0.15); /* Borda dourada sutil */
+    border: 1px solid rgba(198, 169, 107, 0.15); 
     position: relative;
     z-index: 2;
 }
@@ -605,7 +601,7 @@ a {
     text-align: left;
 }
 
-/* O Label clássico: Dourado, pequeno e acima do campo */
+/*ESTILO LABEL*/
 .form_group label {
     font-family: 'Poppins', sans-serif;
     font-size: 11px;
@@ -616,12 +612,12 @@ a {
     font-weight: 500;
 }
 
-/* O Input "Caixa Forte" */
+/*ESTILO INPUT E SELECT*/
 .form_group input,
 .form_group select {
     width: 100%;
     padding: 14px 18px;
-    background: #050505; /* Fundo mais escuro que a caixa principal para dar profundidade */
+    background: #050505; 
     border: 1px solid #222;
     border-radius: 4px;
     color: white;
@@ -630,7 +626,7 @@ a {
     transition: all 0.3s ease;
 }
 
-/* Efeito ao clicar no input (Borda acende em dourado) */
+/*EFEITO CLIQUE DOURADO*/
 .form_group input:focus,
 .form_group select:focus {
     border-color: var(--dourado);
@@ -639,7 +635,7 @@ a {
     background: #0a0a0a;
 }
 
-/* Setinha do Select personalizada */
+/*SETA SELECT*/
 .form_group select {
     cursor: pointer;
     appearance: none;
@@ -649,7 +645,7 @@ a {
     background-size: 14px;
 }
 
-/* Botão de Agendar com presença forte */
+/*BTN MARCACAO*/
 .btn_marcar {
     margin-top: 15px;
     background: linear-gradient(135deg, var(--vinho) 0%, #2b0f0f 100%);
@@ -715,7 +711,7 @@ a {
     transform: translateY(-6px);
 }
 
-/* Tratamento das Imagens dos Serviços */
+/*ESTILO IMAGEM SERVICO*/
 .servico_img {
     height: 200px;
     background-size: cover;
@@ -729,7 +725,7 @@ a {
     content: "";
     position: absolute;
     inset: 0;
-    /* Degradê suave para o texto não brigar com a foto */
+    
     background: linear-gradient(to top, rgba(20,20,20,1), rgba(20,20,20,0.1));
 }
 
@@ -788,7 +784,7 @@ a {
 
 /*ESTILO SECAO PROFISSIONAL*/
 .profissionais {
-    /* Um gradiente radial muito suave no centro para tirar o aspecto "chapado" */
+    
     background: radial-gradient(circle at center, #1a1a1a 0%, var(--preto) 70%);
     padding-bottom: 120px;
 }
@@ -800,7 +796,7 @@ a {
 }
 
 .prof_card {
-    text-align: left; /* Voltamos pro alinhamento elegante à esquerda */
+    text-align: left; 
     cursor: pointer;
     background: transparent;
     border: none;
@@ -808,7 +804,7 @@ a {
 
 .prof_img_wrapper {
     width: 100%;
-    height: 480px; /* Foto GRANDE e imponente novamente */
+    height: 480px; 
     border-radius: 8px;
     overflow: hidden;
     margin-bottom: 20px;
@@ -819,12 +815,12 @@ a {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(100%) contrast(1.1); /* Mantemos o preto e branco chique */
+    filter: grayscale(100%) contrast(1.1); 
     transition: all 0.5s ease;
 }
 
 .prof_card:hover img {
-    filter: grayscale(0%) contrast(1); /* Ganha cor no hover */
+    filter: grayscale(0%) contrast(1);
     transform: scale(1.05);
 }
 
@@ -834,7 +830,7 @@ a {
     color: white;
 }
 
-/* O retorno do Sobrenome Dourado Animado */
+/*ESTILO SOBRENOME DOURADO*/
 .sobrenome {
     background: linear-gradient(to right, var(--dourado) 0%, var(--dourado) 50%, white 50%, white 100%);
     background-size: 200% 100%;
@@ -857,7 +853,7 @@ a {
     margin-bottom: 10px;
 }
 
-/* Informação Extra Limpa (Sem caixote escuro) */
+/*ESTILO INFO EXTRA*/
 .extra_info_clean {
     opacity: 0;
     max-height: 0;
@@ -888,12 +884,12 @@ a {
     transform: translateY(0);
 }
 
-/* --- NOVA LOCALIZAÇÃO: MAPA PANORÂMICO --- */
+/*ESTILO MAPA*/
 .localizacao_premium {
     position: relative;
     width: 100%;
     height: 600px;
-    margin-top: 80px; /* Desgruda dos profissionais! */
+    margin-top: 80px; 
     background: #000;
 }
 
@@ -909,13 +905,13 @@ a {
     width: 100%;
     height: 100%;
     border: 0;
-    /* Novo filtro: 100% tons de cinza/preto, sem vazar cores estranhas */
+    /*FILTRO CINZA E PRETO*/
     filter: grayscale(100%) invert(92%) contrast(1.1);
     transition: 0.5s ease;
     opacity: 0.5; 
 }
 
-/* O mapa acende levemente no hover */
+/*mapa acende ao mouse*/
 .localizacao_premium:hover .mapa_bg iframe {
     opacity: 0.8;
     filter: grayscale(100%) invert(100%) contrast(1.2);
@@ -926,7 +922,7 @@ a {
     z-index: 2;
     height: 100%;
     display: flex;
-    align-items: center; /* Isso garante que o card fique EXATAMENTE no meio */
+    align-items: center;
 }
 
 .card_info_flutuante {
@@ -989,7 +985,7 @@ a {
     color: white;
 }
 
-/* Footer Minimalista */
+/*ESTILO FOOTER*/
 .footer_minimal {
     background: #050505;
     padding: 25px 0;
@@ -1005,12 +1001,12 @@ a {
 
 /*FORMT MOBILE*/
 @media (max-width: 768px) {
-    /* Ajustes Gerais */
+    /*GERAL*/
     section {
         padding: 60px 0;
     }
 
-    /* Ajustes da Navbar */
+    /*NAVBAR MOBILE*/
     .nav_menu {
         display: none; /* Esconde o menu extenso no celular */
     }
@@ -1056,14 +1052,13 @@ a {
         flex-direction: column;
         gap: 15px;
     }
-/* ... (seu código mobile anterior acima de form_row_dupla) ... */
     
     .form_row_dupla {
         flex-direction: column;
         gap: 15px;
     }
 
-    /* --- AJUSTES FINAIS: LOCALIZAÇÃO E FOOTER MOBILE --- */
+    /*AJUSTES MOBILE MAPA E FOOTER*/
     .localizacao_premium {
         height: auto;
         display: flex;
@@ -1090,7 +1085,7 @@ a {
         border-radius: 8px;
     }
 
-    /* --- Ajustes do Novo Agendamento Mobile --- */
+    /*AJUSTE MOBILE MARCACAO*/
     .agendamento_wrapper {
         flex-direction: column;
     }
