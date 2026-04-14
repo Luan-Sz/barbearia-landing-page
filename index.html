@@ -47,60 +47,70 @@
 <main>
 
 <section id="home" class="hero">
-    <div class="hero_content">
+    <div class="hero_center">
         <div class="hero_badge">Desde 1945</div>
         <h1 class="titulo_hero">Barber Pollos <span class="ampersand">&</span> Surdos</h1>
         <p class="hero_frase_1">Onde a tradição encontra o moderno.</p>
         <div class="linha_dourada"></div>
+        
+        <div class="hero_cta_container">
+            <a href="#marcacao" class="btn_vintage">Agendar agora</a>
+        </div>
     </div>
-    <div class="hero_cta_container">
-        <a href="#marcacao" class="btn_vintage">Agendar agora</a>
-    </div>
+
+    <a href="#sobre" class="hero_scroll">
+        <p>Role para descobrir</p>
+        <div class="scroll_line"></div>
+    </a>
 </section>
     
-<section class="sobre">
+<section id="sobre" class="sobre">
     <div class="container sobre_layout">
 
-        <div class="sobre_img">
-            <img src="img/cadeira.jpg" alt="Ambiente da barbearia" loading="lazy" decoding="async">
+        <div class="sobre_img reveal">
+            <div class="img_wrapper">
+                <img src="img/cadeira.jpg" alt="Ambiente da barbearia com cadeira vintage" loading="lazy" decoding="async">
+            </div>
         </div>
 
-        <div class="sobre_texto">
-            <h2 class="section_title sobre_titulo">Sobre a barbearia</h2>
-            <p>
-                Tradição e técnica moderna em um ambiente pensado
-                para conforto e precisão.
-            </p>
+        <div class="sobre_texto reveal">
+            <h2 class="section_title">A Arte da Barbearia</h2>
+            <p class="sobre_destaque">Mais de 80 anos de tradição, passados de geração em geração.</p>
+            <p>Nós não fazemos apenas cortes de cabelo. Nós resgatamos a essência do cuidado masculino clássico, unindo técnicas tradicionais com ferramentas modernas. Um ambiente pensado exclusivamente para o seu conforto, onde cada detalhe da sua aparência importa.</p>
+            <div class="assinatura">Pollos & Surdos</div>
         </div>
 
     </div>
 </section>
 
-<section class="galeria">
+<section id="galeria" class="galeria">
     <div class="container">
 
-        <h2 class="section_title galeria_titulo">Ambiente & Produtos</h2>
+        <h2 class="section_title galeria_titulo">Ambiente & Arsenal</h2>
 
         <div class="galeria_grid">
 
-            <div class="img grande">
-                <img src="img/cutting.avif" loading="lazy" decoding="async">
+            <div class="img grande reveal">
+                <img src="img/cutting.avif" alt="Barbeiro realizando corte de cabelo" loading="lazy" decoding="async">
             </div>
 
-            <div class="img">
-                <img src="img/profutos.avif" loading="lazy" decoding="async">
+            <div class="galeria_card_texto reveal">
+                <div class="card_texto_inner">
+                    <h3>Qualidade em cada gota</h3>
+                    <p>O corte perfeito exige a finalização perfeita. Trabalhamos exclusivamente com linhas de produtos premium e somos parceiros oficiais das melhores marcas de grooming masculino para garantir saúde e fixação ao seu cabelo e barba.</p>
+                </div>
             </div>
 
-            <div class="img">
-                <img src="img/produtos_2.avif" loading="lazy" decoding="async">
+            <div class="img reveal">
+                <img src="img/produtos_2.avif" alt="Detalhe dos produtos de barbearia" loading="lazy" decoding="async">
             </div>
 
-            <div class="img grande">
-                <img src="img/produtos_3.avif" loading="lazy" decoding="async">
+            <div class="img grande reveal">
+                <img src="img/produtos_3.avif" alt="Equipamentos profissionais de barbearia" loading="lazy" decoding="async">
             </div>
 
-            <div class="img">
-                <img src="img/produtos_4.jpg" loading="lazy" decoding="async">
+            <div class="img reveal">
+                <img src="img/produtos_4.jpg" alt="Finalizadores de cabelo e barba" loading="lazy" decoding="async">
             </div>
 
         </div>
@@ -111,26 +121,32 @@
 <section class="processo">
     <div class="container">
 
-        <h2 class="section_title processo_titulo">Nosso Atendimento</h2>
+        <div class="titulo_centralizado reveal">
+            <h2 class="section_title">Nosso Ritual</h2>
+            <p>A excelência exige método. Conheça o nosso padrão de atendimento.</p>
+        </div>
 
         <div class="processo_grid">
 
-            <div class="processo_item">
-                <img src="img/pente_cabelo.jpg" loading="lazy" decoding="async">
-                <h3>Análise e preparação</h3>
-                <p>Entendemos seu estilo e preparamos o cabelo para o corte ideal.</p>
+            <div class="processo_item reveal">
+                <div class="step_num">01</div>
+                <img src="img/pente_cabelo.jpg" alt="Barbeiro preparando o cabelo com pente" loading="lazy" decoding="async">
+                <h3>Visagismo & Design</h3>
+                <p>Não existe corte padrão. Analisamos a geometria do seu rosto, textura do fio e seu perfil profissional para desenhar um estilo exclusivamente seu.</p>
             </div>
 
-            <div class="processo_item">
-                <img src="img/hair.jpg" loading="lazy" decoding="async">
-                <h3>Corte profissional</h3>
-                <p>Técnica precisa com acabamento moderno e detalhado.</p>
+            <div class="processo_item reveal">
+                <div class="step_num">02</div>
+                <img src="img/hair.jpg" alt="Detalhe de corte de cabelo moderno" loading="lazy" decoding="async">
+                <h3>A Arte da Execução</h3>
+                <p>Técnica tradicional de tesoura, precisão milimétrica no degradê e o clássico ritual de toalha quente e espuma aquecida para a barba.</p>
             </div>
 
-            <div class="processo_item">
-                <img src="img/hidratacao.avif" loading="lazy" decoding="async">
-                <h3>Finalização e cuidado</h3>
-                <p>Produtos premium e finalização para máximo resultado.</p>
+            <div class="processo_item reveal">
+                <div class="step_num">03</div>
+                <img src="img/hidratacao.avif" alt="Lavagem e hidratação do cabelo" loading="lazy" decoding="async">
+                <h3>Styling & Manutenção</h3>
+                <p>Lavagem com produtos de alta performance, texturização do fio e consultoria rápida de como manter o visual impecável em casa.</p>
             </div>
 
         </div>
@@ -138,45 +154,67 @@
     </div>
 </section>
 
-<section id="marcacao" class="marcacao">
+<section id="marcacao" class="agendamento_barber">
     <div class="container">
 
-        <h2 class="section_title marcacao_titulo">Agende seu Horário</h2>
+        <div class="titulo_centralizado reveal">
+            <h2 class="section_title">Agende seu Horário</h2>
+            <p>Escolha o serviço, o profissional e venha viver a verdadeira experiência clássica.</p>
+        </div>
 
-        <form id="form_agendamento">
+        <div class="form_wrapper reveal">
+            <form id="formAgendamento" class="form_solido">
+                
+                <div class="form_row">
+                    <div class="form_group">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" id="nome" name="nome" placeholder="Como prefere ser chamado?" required>
+                    </div>
+                    <div class="form_group">
+                        <label for="telefone">WhatsApp</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
+                    </div>
+                </div>
 
-            <label for="nome">Nome</label>
-            <input type="text" id="nome" placeholder="Digite seu nome" required>
+                <div class="form_row">
+                    <div class="form_group">
+                        <label for="servico">Serviço</label>
+                        <select id="servico" name="servico" required>
+                            <option value="">Selecione o serviço...</option>
+                            <option value="corte">Corte Clássico</option>
+                            <option value="barba">Barba Terapia</option>
+                            <option value="corte_barba">O Ritual (Combo)</option>
+                            <option value="massagem">Relaxamento</option>
+                        </select>
+                    </div>
+                    <div class="form_group">
+                        <label for="profissional">Profissional</label>
+                        <select id="profissional" name="profissional" required>
+                            <option value="sem_preferencia">Sem preferência</option>
+                            <option value="manfred">Manfred Godoy</option>
+                            <option value="william">William Cosair</option>
+                            <option value="bruno">Bruno Salamanca</option>
+                        </select>
+                    </div>
+                </div>
 
-            <label for="telefone">Telefone</label>
-            <input type="tel" id="telefone" placeholder="Digite seu telefone" required>
+                <div class="form_row">
+                    <div class="form_group">
+                        <label for="data">Data</label>
+                        <input type="date" id="data" name="data" required>
+                    </div>
+                    <div class="form_group">
+                        <label for="hora">Horário</label>
+                        <input type="time" id="hora" name="hora" required>
+                    </div>
+                </div>
 
-            <label for="servico">Serviço</label>
-            <select id="servico" required>
-                <option value="" disabled selected>Selecione um Serviço</option>
-                <option value="corte">Corte clássico — R$60</option>
-                <option value="barba">Barba — R$30</option>
-                <option value="corte_barba">Corte + Barba — R$80</option>
-                <option value="massagem">Massagem - R$50</option>
-            </select>
+                <button type="submit" class="btn_marcar" id="btnAgendar">
+                    Confirmar Agendamento
+                </button>
 
-            <label for="profissional">Profissional</label>
-            <select id="profissional">
-                <option value="">Sem preferencia de profissional</option>
-                <option value="manfred">Manfred Godoy</option>
-                <option value="william">William Cosair</option>
-                <option value="bruno">Bruno Salamanca</option>
-            </select>
-
-            <label for="data">Data</label>
-            <input type="date" id="data" required>
-
-            <label for="hora">Hora</label>
-            <input type="time" id="hora" required>
-
-            <button type="submit">Agendar pelo WhatsApp</button>
-
-        </form>
+            </form>
+        </div>
 
     </div>
 </section>
@@ -184,50 +222,65 @@
 <section id="servicos" class="servicos">
     <div class="container">
 
-        <h2 class="section_title servico_titulo">Serviços</h2>
+        <div class="titulo_centralizado reveal">
+            <h2 class="section_title">Menu de Serviços</h2>
+            <p>Técnica afiada, produtos de excelência e atenção aos detalhes.</p>
+        </div>
 
         <div class="servicos_grid">
 
             <div class="reveal">
                 <div class="servico_card" data-servico="corte">
-                    <div class="servico_img" style="background-image:url('img/corte_2.avif')" loading="lazy" decoding="async"></div>
+                    <div class="servico_img img_corte" loading="lazy" decoding="async"></div>
                     <div class="servico_info">
-                        <h3>Corte Clássico</h3>
-                        <p>Precisão, estilo e acabamento profissional.</p>
-                        <span>R$ 60</span>
+                        <div class="servico_header">
+                            <h3>Corte Clássico</h3>
+                            <span class="preco">R$ 60</span>
+                        </div>
+                        <p>Visagismo, lavagem e finalização com pomada premium.</p>
+                        <span class="duracao">⏱ 45 min</span>
                     </div>
                 </div>
             </div>
 
             <div class="reveal">
                 <div class="servico_card" data-servico="barba">
-                    <div class="servico_img" style="background-image:url('img/barba_2.avif')" loading="lazy" decoding="async"></div>
+                    <div class="servico_img img_barba" loading="lazy" decoding="async"></div>
                     <div class="servico_info">
-                        <h3>Barba</h3>
-                        <p>Design e alinhamento com técnica premium.</p>
-                        <span>R$ 30</span>
+                        <div class="servico_header">
+                            <h3>Barba Terapia</h3>
+                            <span class="preco">R$ 30</span>
+                        </div>
+                        <p>Toalha quente, ozonioterapia, alinhamento e balm hidratante.</p>
+                        <span class="duracao">⏱ 30 min</span>
                     </div>
                 </div>
             </div>
 
             <div class="reveal">
                 <div class="servico_card" data-servico="corte_barba">
-                    <div class="servico_img" style="background-image:url('img/corte_1.avif')" loading="lazy" decoding="async"></div>
+                    <div class="servico_img img_corte_barba" loading="lazy" decoding="async"></div>
                     <div class="servico_info">
-                        <h3>Corte + Barba</h3>
-                        <p>Experiência completa de cuidado masculino.</p>
-                        <span>R$ 80</span>
+                        <div class="servico_header">
+                            <h3>O Ritual (Combo)</h3>
+                            <span class="preco">R$ 80</span>
+                        </div>
+                        <p>A experiência completa. Corte e barba com tratamento VIP.</p>
+                        <span class="duracao">⏱ 1h 15 min</span>
                     </div>
                 </div>
             </div>
 
             <div class="reveal">
                 <div class="servico_card" data-servico="massagem">
-                    <div class="servico_img" style="background-image:url('img/massa.jpg')" loading="lazy" decoding="async"></div>
+                    <div class="servico_img img_massagem" loading="lazy" decoding="async"></div>
                     <div class="servico_info">
-                        <h3>Massagem</h3>
-                        <p>Relaxamento e recuperação pós-serviço.</p>
-                        <span>R$ 50</span>
+                        <div class="servico_header">
+                            <h3>Relaxamento</h3>
+                            <span class="preco">R$ 50</span>
+                        </div>
+                        <p>Massagem capilar e facial para alívio de tensão pós-serviço.</p>
+                        <span class="duracao">⏱ 20 min</span>
                     </div>
                 </div>
             </div>
@@ -239,103 +292,98 @@
 <section id="profissionais" class="profissionais">
     <div class="container">
 
-        <h2 class="section_title profissionais_titulo">Profissionais</h2>
+        <div class="titulo_centralizado reveal">
+            <h2 class="section_title">Nossos Artistas</h2>
+            <p>Especialistas forjados na tradição e atualizados nas tendências.</p>
+        </div>
 
         <div class="profissionais_grid">
 
-        <div class="prof_card" data-profissional="manfred">
-            <img src="img/profissional_manfred.jpeg" loading="lazy" decoding="async">
-
-            <h3>Manfred <span class="sobrenome">Godoy</span></h3>
-    
-            <p>Especialista em cortes clássicos</p>
-
-            <div class="extra_info">
-                <p>+10 anos de experiência</p>
-                <p>Especialista em tesoura e acabamento</p>
+            <div class="reveal">
+                <div class="prof_card" data-profissional="manfred">
+                    <div class="prof_img_wrapper">
+                        <img src="img/profissional_manfred.jpeg" alt="Barbeiro Manfred Godoy" loading="lazy" decoding="async">
+                    </div>
+                    <h3 class="prof_nome">Manfred <span class="sobrenome">Godoy</span></h3>
+                    <p class="prof_cargo">Mestre Barbeiro</p>
+                    <div class="extra_info_clean">
+                        <p>✦ +10 anos de experiência</p>
+                        <p>✦ Especialista em tesoura e finalização</p>
+                    </div>
+                </div>
             </div>
 
-        </div>
-
-        <div class="prof_card" data-profissional="william">
-            <img src="img/profissional_2.avif" alt="William Cosair" loading="lazy" decoding="async">
-
-            <h3>William <span class="sobrenome">Cosair</span></h3>
-    
-            <p>Especialista em fade e degradê</p>
-
-            <div class="extra_info">
-                <p>Especialista em fade</p>
-                <p>Alta precisão em degradê</p>
+            <div class="reveal">
+                <div class="prof_card" data-profissional="william">
+                    <div class="prof_img_wrapper">
+                        <img src="img/profissional_2.avif" alt="William Cosair" loading="lazy" decoding="async">
+                    </div>
+                    <h3 class="prof_nome">William <span class="sobrenome">Cosair</span></h3>
+                    <p class="prof_cargo">Especialista em Fade</p>
+                    <div class="extra_info_clean">
+                        <p>✦ Referência em degradê</p>
+                        <p>✦ Cortes urbanos e modernos</p>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="prof_card" data-profissional="bruno">
-            <img src="img/profissional_4.jpg" alt="Bruno Salamanca" loading="lazy" decoding="async">
-
-            <h3>Bruno <span class="sobrenome">Salamanca</span></h3>
-    
-            <p>Especialista em Barba</p>
-
-            <div class="extra_info">
-                <p>Barba premium e acabamento</p>
-                <p>Especialista em Navalha e Tesoura</p>
+            <div class="reveal">
+                <div class="prof_card" data-profissional="bruno">
+                    <div class="prof_img_wrapper">
+                        <img src="img/profissional_4.jpg" alt="Bruno Salamanca" loading="lazy" decoding="async">
+                    </div>
+                    <h3 class="prof_nome">Bruno <span class="sobrenome">Salamanca</span></h3>
+                    <p class="prof_cargo">Especialista em Barba</p>
+                    <div class="extra_info_clean">
+                        <p>✦ Design de barba premium</p>
+                        <p>✦ Mestre na navalha clássica</p>
+                    </div>
+                </div>
             </div>
-        </div>
 
         </div>
 
     </div>
 </section>
 
-<section id="informacoes" class="informacoes">
-    <div class="container">
-
-        <h2 class="section_title informacoes_titulo">Informações</h2>
-
-        <div class="info_grid">
-
-            <div class="info_card reveal">
-                <h3>Horário de Funcionamento</h3>
-                <p>Segunda a Sábado</p>
-                <p>09:00 - 19:00</p>
+<section id="informacoes" class="localizacao_premium">
+    
+    <div class="mapa_bg">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15925.263595467383!2d-38.5332616!3d-3.7297072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7c7484df8a2f8c5%3A0xc48c1e403d297d26!2sCentro%2C%20Fortaleza%20-%20CE!5e0!3m2!1spt-BR!2sbr!4v1715000000000!5m2!1spt-BR!2sbr"
+            title="Mapa de localização da Barber Pollos Surdos"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+    
+    <div class="container box_card_center">
+        <div class="card_info_flutuante reveal">
+            <div class="logo">
+                Barber Pollos <span>&</span> Surdos
+            </div>
+            
+            <div class="info_bloco">
+                <span class="info_label">Onde Estamos</span>
+                <p>Rua Exemplo, 05<br>Centro, Fortaleza/CE</p>
+            </div>
+            
+            <div class="info_bloco">
+                <span class="info_label">Horário de Funcionamento</span>
+                <p>Segunda a Sábado<br>09:00 às 19:00</p>
             </div>
 
-            <div class="info_card reveal">
-                <h3>Localização</h3>
-                <p>Rua Exemplo, 05</p>
-                <p>Centro - Fortaleza CE</p>
-
-                <a href="https://www.google.com/maps" target="_blank" class="map_link">
-                    Abrir no Google Maps
-                </a>
+            <div class="social_links">
+                <a href="#" aria-label="Instagram">Instagram</a>
+                <a href="#" aria-label="WhatsApp">WhatsApp</a>
             </div>
-
-            <div class="info_card reveal">
-                <h3>Atendimento</h3>
-                <p>Agendamento via WhatsApp</p>
-                <p>Resposta média: 5 min</p>
-            </div>
-
         </div>
-
-        <div class="map_container">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18..."
-                loading="lazy">
-            </iframe>
-        </div>
-
     </div>
 </section>
 
-</main>
-
-<footer>
+<footer class="footer_minimal">
     <div class="container">
-        <div class="footer">
-        <p>© 2026 Barber Pollos Surdos - Todos os direitos reservados</p>
-        </div>
+        <p>© 2026 Barber Pollos Surdos. Todos os direitos reservados.</p>
     </div>
 </footer>
 
