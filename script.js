@@ -65,8 +65,24 @@ document.addEventListener("DOMContentLoaded", function () {
             dataHoraAgendamento: `${data}T${hora}:00` // Padrão ISO 8601
         };
 
-        // Simulando o envio para a API no console do navegador (F12)
-        console.log("Simulando POST para a API (Spring Boot):", JSON.stringify(agendamentoPayload, null, 2));
+       //DISPARO PARA O JAVA
+        fetch("http://localhost:8080/agendamentos", {
+            method: "POST", //intecao de criar algo novo
+            headers: {
+                "Content-Type": "application/json" //informa que a lingua é JSON
+            },
+            body: JSON.stringify(agendamentoPayload) //transforma o objeto JS em texto JSON
+        })
+        .then(resposta => {
+            if (resposta.ok) {
+                console.log("Wakethefuckup, SAMURAI. We have a city to burn! deu certo");
+            } else {
+                console.error("merda, tenta de novo otario. Erro HTTP:", resposta.status);
+            }
+        })
+        .catch(erro => {
+            console.error("Erro de conexão. tu nao rodaria essa merda sem o servidor ta ligado ne filho da puta?", erro);
+        });
 
         //INTEGRAÇÃO WHATSAPP
         const servicoTexto = servicoSelect.selectedOptions[0].text;
