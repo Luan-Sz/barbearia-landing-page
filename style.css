@@ -998,7 +998,7 @@ a {
 
 /* FORMT MOBILE */
 @media (max-width: 768px) {
-    /* evita bug ios */
+    /* CORREÇÃO DO ZOOM E BUG IOS */
     .hero, .servicos, .agendamento_barber {
         background-attachment: scroll;
     }
@@ -1019,7 +1019,7 @@ a {
         font-size: 24px;
     }
     
-    /* animacao seta swipe */
+    /* ANIMAÇÃO DA SETA DE SWIPE (APENAS MOBILE) */
     .swipe_arrow_mobile {
         display: flex !important;
         justify-content: center;
@@ -1032,7 +1032,7 @@ a {
         50% { transform: translateX(10px); opacity: 1; }
     }
     
-    /* navbar e menu hamburguer */
+    /* NAVBAR E MENU HAMBURGUER */
     .nav_container {
         padding: 15px;
         background-color: rgba(0, 0, 0, 0.95);
@@ -1065,6 +1065,7 @@ a {
         border-radius: 2px;
     }
     
+    /* Menu corrigido: Não fica cortado para cima */
     .nav_menu {
         display: flex;
         position: fixed;
@@ -1075,8 +1076,10 @@ a {
         background: rgba(10, 10, 10, 0.98);
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
-        padding-top: 0; 
-        justify-content: center;
+        padding-top: 100px; /* Empurra os itens para não colar no topo */
+        padding-bottom: 50px; 
+        justify-content: flex-start; /* Permite rolagem normal */
+        overflow-y: auto; 
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
         z-index: 1050;
         box-shadow: -10px 0 30px rgba(0,0,0,0.5);
@@ -1132,7 +1135,7 @@ a {
         display: none !important;
     }
 
-    /* ritual mobile */
+    /* RITUAL MOBILE */
     .processo_grid {
         grid-template-columns: 1fr;
         gap: 25px;
@@ -1152,7 +1155,7 @@ a {
         color: rgba(198, 169, 107, 0.05) !important;
     }
 
-    /* arsenal texto fixo mobile */
+    /* ARSENAL TEXTO FIXO MOBILE */
     div.texto_pc {
         display: none !important;
     } 
@@ -1162,7 +1165,9 @@ a {
         margin-bottom: 25px;
     } 
     
-    /* layout de deslizar (swipe) */
+    /* =========================================
+       LAYOUT DE DESLIZAR (SWIPE) GERAL E SEGURO
+       ========================================= */
     .galeria_grid, .servicos_grid, .profissionais_grid {
         display: flex;
         overflow-x: auto;
@@ -1170,7 +1175,7 @@ a {
         overscroll-behavior-x: contain; 
         touch-action: pan-x; 
         gap: 20px; 
-        padding: 0 10px 20px 10px;
+        padding: 0 10px 20px 10px; /* Padding para centralizar o primeiro card */
         scrollbar-width: none; 
     }
 
@@ -1178,11 +1183,12 @@ a {
         display: none;
     }
     
-    /* itens do swipe */
+    /* Mágica 1: Pega TODOS os filhos da grid para centralizar igual. 
+       Mágica 2: scroll-snap-stop: always obriga a parar 1 por vez. */
     .galeria_grid > div, .servicos_grid > div, .profissionais_grid > div {
         flex: 0 0 85%;
         scroll-snap-align: center;
-        scroll-snap-stop: always;
+        scroll-snap-stop: always; 
         height: auto;
     }
 
@@ -1190,7 +1196,7 @@ a {
         height: 280px;
     }
 
-    /* servicos mobile */
+    /* SERVICOS MOBILE */
     .servico_card {
         display: flex;
         flex-direction: column;
@@ -1240,7 +1246,7 @@ a {
         align-self: flex-start;
     }
 
-    /* profissionais mobile */
+    /* PROFISSIONAIS MOBILE */
     .prof_card {
         text-align: left;
         background: var(--cinza);
@@ -1277,7 +1283,7 @@ a {
         color: #d1d1d1;
     }
 
-    /* formulario forms mobile */
+    /* FORMULARIOS MOBILE */
     .form_wrapper {
         padding: 30px 15px;
         box-shadow: none;
@@ -1318,7 +1324,7 @@ a {
         display: block;
     }
 
-    /* mapa mobile */
+    /* MAPA MOBILE */
     .localizacao_premium {
         height: auto;
         display: flex;
