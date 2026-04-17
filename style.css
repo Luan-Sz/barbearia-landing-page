@@ -1001,32 +1001,43 @@ a {
 
 /*FORMT MOBILE*/
 @media (max-width: 768px) {
-    /*GERAL*/
+    /*ESTILO GERAL E ESPACAMENTO*/
     section {
-        padding: 60px 0;
+        padding: 50px 15px; /*reduz lateral pra ganhar espaco util*/
     }
 
-    /*NAVBAR MOBILE*/
-    .nav_menu {
-        display: none; /* Esconde o menu extenso no celular */
-    }
-
+    /*NAVMOBILEBAR*/
     .nav_container {
-        padding: 15px 20px; /* Deixa a barra mais justa no celular */
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.95); /*facil de ler*/
+        position: sticky; 
+        top: 0;
+        z-index: 1000;
     }
 
-    /* Ajustes da Hero */
+    .nav_menu {
+        display: none; 
+    }
+
+    /*ESTILO HERO MOBILE*/
     .hero {
-        padding: 100px 20px 40px 20px;
+        padding: 120px 20px 50px 20px;
+        text-align: center;
     }
     
     .titulo_hero {
-        font-size: 38px;
+        font-size: 32px;
+        line-height: 1.2;
     }
 
-    /* Ajustes de Grids para virarem 1 coluna no celular */
-    .galeria_grid {
+    /*ESTILO GRID MOBILE*/
+    .galeria_grid, 
+    .processo_grid {
         grid-template-columns: 1fr;
+        gap: 25px; 
     }
     
     .grande {
@@ -1034,45 +1045,66 @@ a {
         grid-row: auto;
     }
 
-    .processo_grid {
-        grid-template-columns: 1fr;
+    /*ESTILO MARCACAO MOBILE*/
+    .agendamento_wrapper {
+        flex-direction: column;
+        border-radius: 12px; 
+        overflow: hidden;
     }
 
-    /* Ajustes do Formulário */
+    .agendamento_conteudo, 
+    .agendamento_form_box {
+        padding: 40px 20px;
+        text-align: center;
+    }
+
     .form_agendamento {
         grid-template-columns: 1fr;
-        padding: 20px;
+        gap: 20px; 
+    }
+
+    .form_row, 
+    .form_row_dupla {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /*ESTILO INPUTS E BTN MOBILE*/
+    input, select, textarea {
+        min-height: 48px; /* Padrão Apple/Google para toques com o polegar */
+        font-size: 16px; /* Evita o zoom automático nos iPhones */
+        padding: 12px 15px;
+        border-radius: 8px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .btn_agendamento {
-        grid-column: span 1;
-    }
-    
-    .form_row_dupla {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .form_row_dupla {
-        flex-direction: column;
-        gap: 15px;
+        min-height: 54px; /* O botão de conversão deve ser o alvo mais fácil da tela */
+        font-size: 18px;
+        font-weight: bold;
+        width: 100%;
+        margin-top: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
     }
 
-    /*AJUSTES MOBILE MAPA E FOOTER*/
+    /*ESTILO INFORMACAO E MAPA MOBILE*/
     .localizacao_premium {
         height: auto;
         display: flex;
-        flex-direction: column-reverse; /* Card em cima, Mapa embaixo */
-        margin-top: 60px;
+        flex-direction: column-reverse; 
+        margin-top: 40px;
     }
 
     .mapa_bg {
-        position: relative;
-        height: 350px; /* Altura fixa do mapa no celular */
+        height: 320px; 
+        width: 100%;
     }
 
     .box_card_center {
-        padding: 40px 20px;
+        padding: 30px 15px;
         height: auto;
     }
 
@@ -1081,26 +1113,8 @@ a {
         top: 0;
         transform: none;
         max-width: 100%;
-        box-shadow: none;
-        border-radius: 8px;
-    }
-
-    /*AJUSTE MOBILE MARCACAO*/
-    .agendamento_wrapper {
-        flex-direction: column;
-    }
-
-    .agendamento_conteudo {
-        padding: 50px 30px;
-        text-align: center;
-    }
-
-    .agendamento_form_box {
-        padding: 50px 30px;
-    }
-
-    .form_row {
-        flex-direction: column;
-        gap: 40px; /* Mantém o respiro no celular */
+        border-radius: 12px;
+        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1); 
+        margin-bottom: 20px;
     }
 }
