@@ -998,7 +998,7 @@ a {
 
 /* FORMT MOBILE */
 @media (max-width: 768px) {
-    /* CORREÇÃO DO ZOOM E BUG IOS */
+    /* evita bug ios */
     .hero, .servicos, .agendamento_barber {
         background-attachment: scroll;
     }
@@ -1019,20 +1019,21 @@ a {
         font-size: 24px;
     }
     
-    /* ANIMAÇÃO DA SETA DE SWIPE (APENAS MOBILE) */
+    /* novo indicador de swipe premium */
     .swipe_arrow_mobile {
         display: flex !important;
+        align-items: center;
         justify-content: center;
-        margin-bottom: 15px;
-        animation: deslizeLateral 2s infinite ease-in-out;
-    }
-
-    @keyframes deslizeLateral {
-        0%, 100% { transform: translateX(-10px); opacity: 0.4; }
-        50% { transform: translateX(10px); opacity: 1; }
+        gap: 10px;
+        margin-bottom: 25px;
+        font-size: 12px;
+        color: var(--dourado);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        opacity: 0.8;
     }
     
-    /* NAVBAR E MENU HAMBURGUER */
+    /* navbar e menu hamburguer */
     .nav_container {
         padding: 15px;
         background-color: rgba(0, 0, 0, 0.95);
@@ -1065,7 +1066,7 @@ a {
         border-radius: 2px;
     }
     
-    /* Menu corrigido: Não fica cortado para cima */
+    /* menu hamburguer desce mais e centraliza */
     .nav_menu {
         display: flex;
         position: fixed;
@@ -1076,9 +1077,9 @@ a {
         background: rgba(10, 10, 10, 0.98);
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
-        padding-top: 100px; /* Empurra os itens para não colar no topo */
+        padding-top: 160px; /* empurrado bem mais para baixo */
         padding-bottom: 50px; 
-        justify-content: flex-start; /* Permite rolagem normal */
+        justify-content: flex-start;
         overflow-y: auto; 
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
         z-index: 1050;
@@ -1135,7 +1136,7 @@ a {
         display: none !important;
     }
 
-    /* RITUAL MOBILE */
+    /* ritual mobile */
     .processo_grid {
         grid-template-columns: 1fr;
         gap: 25px;
@@ -1155,7 +1156,7 @@ a {
         color: rgba(198, 169, 107, 0.05) !important;
     }
 
-    /* ARSENAL TEXTO FIXO MOBILE */
+    /* arsenal texto fixo mobile */
     div.texto_pc {
         display: none !important;
     } 
@@ -1165,17 +1166,14 @@ a {
         margin-bottom: 25px;
     } 
     
-    /* =========================================
-       LAYOUT DE DESLIZAR (SWIPE) GERAL E SEGURO
-       ========================================= */
+    /* scroll carrossel ponta a ponta perfeito */
     .galeria_grid, .servicos_grid, .profissionais_grid {
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
-        overscroll-behavior-x: contain; 
-        touch-action: pan-x; 
-        gap: 20px; 
-        padding: 0 10px 20px 10px; /* Padding para centralizar o primeiro card */
+        gap: 15px; 
+        padding: 0 15px 20px 15px; 
+        margin: 0 -15px; /* vaza as margens para não espremer o card */
         scrollbar-width: none; 
     }
 
@@ -1183,12 +1181,11 @@ a {
         display: none;
     }
     
-    /* Mágica 1: Pega TODOS os filhos da grid para centralizar igual. 
-       Mágica 2: scroll-snap-stop: always obriga a parar 1 por vez. */
+    /* cards centralizados passando um por vez */
     .galeria_grid > div, .servicos_grid > div, .profissionais_grid > div {
-        flex: 0 0 85%;
+        flex: 0 0 82%; /* tamanho exato para mostrar o proximo card cortado */
         scroll-snap-align: center;
-        scroll-snap-stop: always; 
+        scroll-snap-stop: always;
         height: auto;
     }
 
@@ -1196,7 +1193,7 @@ a {
         height: 280px;
     }
 
-    /* SERVICOS MOBILE */
+    /* servicos mobile */
     .servico_card {
         display: flex;
         flex-direction: column;
@@ -1246,7 +1243,7 @@ a {
         align-self: flex-start;
     }
 
-    /* PROFISSIONAIS MOBILE */
+    /* profissionais mobile */
     .prof_card {
         text-align: left;
         background: var(--cinza);
@@ -1283,7 +1280,7 @@ a {
         color: #d1d1d1;
     }
 
-    /* FORMULARIOS MOBILE */
+    /* formulario mobile */
     .form_wrapper {
         padding: 30px 15px;
         box-shadow: none;
@@ -1324,7 +1321,7 @@ a {
         display: block;
     }
 
-    /* MAPA MOBILE */
+    /* mapa mobile */
     .localizacao_premium {
         height: auto;
         display: flex;
