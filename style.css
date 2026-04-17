@@ -1018,6 +1018,67 @@ a {
     .galeria_titulo { font-size: 24px; }
     
     /*NAVMOBILEBAR*/
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 1100;
+        padding: 5px;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 28px;
+        height: 3px;
+        background: var(--dourado);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        border-radius: 2px;
+    }
+
+    /* Estrutura do Menu Fechado */
+    .nav_menu {
+        display: flex;
+        position: fixed;
+        top: 0;
+        right: -100%; /* Começa escondido para fora da tela */
+        width: 80%;
+        height: 100vh;
+        background: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        padding-top: 120px;
+        /* Curva de animação profissional (suave no final) */
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+        z-index: 1050;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5); /* Sombra lateral */
+    }
+
+    .nav_menu ul {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 40px;
+    }
+
+    /* CLASSE ATIVA (Injetada pelo Javascript) */
+    .nav_menu.active {
+        right: 0;
+    }
+
+    /* Animação do botão virando um "X" */
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+    
     .nav_container {
         padding: 15px;
         display: flex;
