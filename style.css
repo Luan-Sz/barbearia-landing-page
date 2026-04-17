@@ -1046,21 +1046,51 @@ a {
 
     /*ESTILO SOBRE MOBILE*/
     .sobre_layout {
-        grid-template-columns: 1fr; 
-        text-align: center; 
-        gap: 40px;
-    }
-    
-    .img_wrapper::after {
-        display: none;
+        display: flex !important; 
+        flex-direction: column !important; 
+        text-align: center;
+        gap: 30px;
     }
 
-    /*DESATIVA EFEITO DE HOVER ENGANOSO NO MOBILE*/
+    .sobre_layout .img_wrapper {
+        width: 100%;
+        max-width: 400px; 
+        margin: 0 auto; 
+    }
+
+    .img_wrapper::after {
+        display: none !important;
+    }
+
+    /* DESATIVA TODOS OS EFEITOS DE HOVER ENGANOSOS NO MOBILE */
+    /* RESET TOTAL DE INTERAÇÃO NO RITUAL (MOBILE) */
+    .processo_item, 
+    .processo_item img, 
+    .processo_item .step_num {
+        transition: none !important; 
+        transform: none !important;
+        border-color: #2a2a2a !important;
+        filter: grayscale(20%) !important;
+        color: rgba(198, 169, 107, 0.05) !important;
+    }
+    
     .processo_item:active, 
     .processo_item:focus,
     .processo_item:hover {
         border-color: #2a2a2a !important; 
         transform: none !important; 
+    }
+
+    .processo_item:active img,
+    .processo_item:focus img,
+    .processo_item:hover img {
+        filter: grayscale(20%) !important; 
+    }
+    
+    .processo_item:active .step_num,
+    .processo_item:focus .step_num,
+    .processo_item:hover .step_num {
+        color: rgba(198, 169, 107, 0.05) !important; 
     }
 
     /*ESTILO GRID MOBILE*/
