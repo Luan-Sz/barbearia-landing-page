@@ -1068,29 +1068,78 @@ a {
     }
 
     /*ESTILO PROFISSIONAL MOBILE (layout arraste pro lado)*/
-    .profissionais_grid,
-    .servicos_grid { 
-        display: flex;
-        overflow-x: auto; 
-        scroll-snap-type: x mandatory; 
+    .servicos_grid {
+        display: grid;
+        grid-template-columns: 1fr; /* Lista de uma coluna */
         gap: 15px;
-        padding-bottom: 20px;
-        scrollbar-width: none; 
-    }
-    
-    .profissionais_grid::-webkit-scrollbar,
-    .servicos_grid::-webkit-scrollbar {
-        display: none;
     }
 
-    .prof_card,
-    .servico_card { 
-        flex: 0 0 85%;
-        scroll-snap-align: center;
+    .servico_card {
+        display: flex;
+        flex-direction: row; /* Lado a lado: foto na esquerda, texto na direita */
+        align-items: center;
+        padding: 12px;
+        background: rgba(20, 20, 20, 0.9);
+        border-radius: 12px;
+    }
+
+    .servico_img {
+        width: 85px; /* Miniatura quadrada */
+        height: 85px;
+        border-radius: 8px;
+        flex-shrink: 0;
+    }
+
+    /* Ajuste do conteúdo ao lado da foto */
+    .servico_info {
+        padding: 0 0 0 15px;
+        width: 100%;
+        text-align: left;
+    }
+
+    .servico_header {
+        display: flex;
+        flex-direction: column; /* Nome em cima, preço embaixo */
+        align-items: flex-start;
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        gap: 5px;
+    }
+
+    .servico_header h3 {
+        font-size: 17px;
+        white-space: nowrap; /* Evita que o nome quebre em duas linhas */
+    }
+
+    .preco {
+        font-size: 18px;
+    }
+
+    /* Oculta a descrição longa no mobile para um visual premium e direto */
+    .servico_info p {
+        display: none; 
+    }
+
+    .duracao {
+        margin-top: 8px;
+    }
+
+    /* 2. PROFISSIONAIS: Empilhamento Limpo (Sem arrastar pro lado) */
+    .profissionais_grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 50px; /* Respiro grande entre um barbeiro e outro */
+    }
+
+    .prof_card {
+        text-align: center; /* Centraliza as informações no celular */
     }
 
     .prof_img_wrapper {
-        height: 320px; /* Altura muito mais elegante e contida */
+        width: 100%;
+        height: 380px; /* Altura imponente, mas que cabe inteira na tela */
+        border-radius: 12px;
     }
 
     /*ESTILO INPUTS E BTN MOBILE*/
