@@ -190,6 +190,9 @@ a { text-decoration: none; }
 /* =========================================
    FORMT MOBILE (max-width: 768px)
    ========================================= */
+/* =========================================
+   FORMT MOBILE (max-width: 768px)
+   ========================================= */
 @media (max-width: 768px) {
     /* CORREÇÃO DO ZOOM E BUG IOS */
     .hero, .servicos, .agendamento_barber { background-attachment: scroll; }
@@ -218,9 +221,13 @@ a { text-decoration: none; }
     .hamburger span { display: block; width: 28px; height: 3px; background: var(--dourado); transition: transform 0.3s ease, opacity 0.3s ease; border-radius: 2px; }
     
     .nav_menu {
-        display: flex; position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
+        display: flex; position: fixed; top: 0; right: -100%; 
+        width: 65%; /* <-- REDUZIDO: Aba preta agora ocupa só 65% da tela */
+        height: 100vh;
         background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-        padding-top: 120px; transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+        padding-top: 0; /* Removemos o espaçamento esmagador de cima */
+        justify-content: center; /* <-- CENTRALIZA PERFEITAMENTE verticalmente e garante espaço de scroll */
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
         z-index: 1050; box-shadow: -10px 0 30px rgba(0,0,0,0.5);
     }
     .nav_menu ul { flex-direction: column; align-items: center; width: 100%; gap: 40px; }
@@ -245,17 +252,18 @@ a { text-decoration: none; }
     /* =========================================
        ARSENAL (Texto Fixo e Fotos Deslizantes)
        ========================================= */
-    .texto_pc { display: none; } /* Esconde a caixa do mosaico no celular */
-    .texto_mobile { display: block; margin-bottom: 25px; } /* Mostra o texto no topo */
+    .texto_pc { display: none; } 
+    .texto_mobile { display: block; margin-bottom: 25px; } 
     
     /* =========================================
-       LAYOUT DE DESLIZAR (SWIPE) GERAL
+       LAYOUT DE DESLIZAR (SWIPE) GERAL (Com Trava de Eixo)
        ========================================= */
     .galeria_grid, .servicos_grid, .profissionais_grid {
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         overscroll-behavior-x: contain; 
+        touch-action: pan-x; /* <-- TRAVA DE EIXO: Deslizou pro lado? Ele trava na horizontal! */
         gap: 20px; 
         padding-bottom: 20px;
         scrollbar-width: none; 
