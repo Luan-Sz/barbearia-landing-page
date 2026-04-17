@@ -453,6 +453,10 @@ a {
     transition: all 0.4s ease;
 }
 
+.hamburger {
+    display: none;
+}
+
 .nav_container {
     display: flex;
     justify-content: space-between;
@@ -1001,25 +1005,28 @@ a {
 
 /*FORMT MOBILE*/
 @media (max-width: 768px) {
-    /*ESTILO GERAL E ESPACAMENTO*/
-
-    /*DESLIGA PARALAX (evita bugvisual no IOS)*/
+    /* DESLIGA PARALAX (evita bug visual no IOS) */
     .hero, .servicos, .agendamento_barber {
         background-attachment: scroll;
     }
     
-    /* 1. GERAL: Reduzindo a "Lupa" */
-    section {
-        padding: 40px 15px; 
-    }
-    
+    /* GERAL: Reduzindo a "Lupa" */
+    section { padding: 50px 15px; }
     h1 { font-size: 38px; }
     h2, .section_title { font-size: 28px; }
     .galeria_titulo { font-size: 24px; }
     
-    /*NAVMOBILEBAR*/
+    /* NAVBAR MOBILE E MENU HAMBURGUER */
+    .nav_container {
+        padding: 15px;
+        background-color: rgba(0, 0, 0, 0.95);
+        position: sticky; 
+        top: 0;
+        z-index: 1000;
+    }
+
     .hamburger {
-        display: flex;
+        display: flex; /* Agora ele aparece no celular */
         flex-direction: column;
         gap: 6px;
         background: transparent;
@@ -1038,22 +1045,20 @@ a {
         border-radius: 2px;
     }
 
-    /* Estrutura do Menu Fechado */
     .nav_menu {
         display: flex;
         position: fixed;
         top: 0;
-        right: -100%; /* Começa escondido para fora da tela */
+        right: -100%;
         width: 80%;
         height: 100vh;
         background: rgba(10, 10, 10, 0.98);
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
         padding-top: 120px;
-        /* Curva de animação profissional (suave no final) */
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
         z-index: 1050;
-        box-shadow: -10px 0 30px rgba(0,0,0,0.5); /* Sombra lateral */
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
     }
 
     .nav_menu ul {
@@ -1063,248 +1068,167 @@ a {
         gap: 40px;
     }
 
-    /* CLASSE ATIVA (Injetada pelo Javascript) */
-    .nav_menu.active {
-        right: 0;
-    }
+    .nav_menu.active { right: 0; }
+    .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-    /* Animação do botão virando um "X" */
-    .hamburger.active span:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
-    }
-    .hamburger.active span:nth-child(2) {
-        opacity: 0;
-    }
-    .hamburger.active span:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
-    }
-    
-    .nav_container {
-        padding: 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: rgba(0, 0, 0, 0.95); /*facil de ler*/
-        position: sticky; 
-        top: 0;
-        z-index: 1000;
-    }
-
-    .nav_menu {
-        display: none; 
-    }
-
-    /*ESTILO HERO MOBILE*/
+    /* HERO MOBILE */
     .hero {
         padding: 120px 20px 50px 20px;
         text-align: center;
     }
-    
     .titulo_hero {
         font-size: 32px;
         line-height: 1.2;
     }
 
-    /*ESTILO SOBRE MOBILE*/
+    /* SOBRE MOBILE (Empilhado) */
     .sobre_layout {
         display: flex !important; 
         flex-direction: column !important; 
         text-align: center;
         gap: 30px;
     }
-
     .sobre_layout .img_wrapper {
         width: 100%;
         max-width: 400px; 
         margin: 0 auto; 
     }
+    .img_wrapper::after { display: none !important; }
 
-    .img_wrapper::after {
-        display: none !important;
+    /* GALERIA MOBILE (Swipe Lateral estilo App) */
+    .galeria_grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 15px;
+        padding-bottom: 15px;
+        scrollbar-width: none; /* Firefox */
     }
-
-    /* DESATIVA TODOS OS EFEITOS DE HOVER ENGANOSOS NO MOBILE */
-    /* RESET TOTAL DE INTERAÇÃO NO RITUAL (MOBILE) */
-    .processo_item, 
-    .processo_item img, 
-    .processo_item .step_num {
-        transition: none !important; 
-        transform: none !important;
-        border-color: #2a2a2a !important;
-        filter: grayscale(20%) !important;
-        color: rgba(198, 169, 107, 0.05) !important;
-    }
+    .galeria_grid::-webkit-scrollbar { display: none; /* Chrome/Safari */ }
     
-    .processo_item:active, 
-    .processo_item:focus,
-    .processo_item:hover {
-        border-color: #2a2a2a !important; 
-        transform: none !important; 
+    .galeria_grid > div {
+        flex: 0 0 85%; /* Ocupa 85% da tela */
+        scroll-snap-align: center;
+    }
+    .galeria .img img {
+        height: 280px; /* Padroniza a altura das fotos na galeria mobile */
     }
 
-    .processo_item:active img,
-    .processo_item:focus img,
-    .processo_item:hover img {
-        filter: grayscale(20%) !important; 
-    }
-    
-    .processo_item:active .step_num,
-    .processo_item:focus .step_num,
-    .processo_item:hover .step_num {
-        color: rgba(198, 169, 107, 0.05) !important; 
-    }
-
-    /*ESTILO GRID MOBILE*/
-    .galeria_grid, 
+    /* RITUAL MOBILE (Correção do texto cinza e travamento do Hover) */
     .processo_grid {
         grid-template-columns: 1fr;
         gap: 25px; 
     }
-    
-    .grande {
-        grid-column: auto;
-        grid-row: auto;
+    .processo_item {
+        transform: none !important;
+        border-color: #2a2a2a !important;
     }
+    .processo_item img { filter: grayscale(20%) !important; }
+    .processo_item .step_num { color: rgba(198, 169, 107, 0.05) !important; }
 
-    /*ESTILO MARCACAO MOBILE*/
-    .form_wrapper {
-        padding: 40px 20px;
-        box-shadow: none; /* Deixa mais limpo no celular */
-    }
-
-    .form_row {
-        grid-template-columns: 1fr; /* Força os inputs a ficarem um embaixo do outro */
-        gap: 20px;
-    }
-
-    /*ESTILO PROFISSIONAL MOBILE (layout arraste pro lado)*/
+    /* MENU DE SERVIÇOS MOBILE (Lista Compacta Corrigida) */
     .servicos_grid {
         display: grid;
-        grid-template-columns: 1fr; /* Lista de uma coluna */
+        grid-template-columns: 1fr;
         gap: 15px;
     }
-
     .servico_card {
         display: flex;
-        flex-direction: row; /* Lado a lado: foto na esquerda, texto na direita */
+        flex-direction: row;
         align-items: center;
         padding: 12px;
         background: rgba(20, 20, 20, 0.9);
         border-radius: 12px;
     }
-
     .servico_img {
-        width: 85px; /* Miniatura quadrada */
-        height: 85px;
+        width: 85px; 
+        height: 85px; /* Foto perfeitamente quadrada */
+        min-width: 85px; /* Impede a foto de ser esmagada pelo texto */
         border-radius: 8px;
-        flex-shrink: 0;
     }
-
-    /* Ajuste do conteúdo ao lado da foto */
     .servico_info {
         padding: 0 0 0 15px;
         width: 100%;
-        text-align: left;
+        text-align: left; /* Garante alinhamento à esquerda */
     }
-
     .servico_header {
         display: flex;
-        flex-direction: column; /* Nome em cima, preço embaixo */
+        flex-direction: column;
         align-items: flex-start;
         border-bottom: none;
         margin-bottom: 0;
         padding-bottom: 0;
         gap: 5px;
     }
-
     .servico_header h3 {
         font-size: 17px;
-        white-space: nowrap; /* Evita que o nome quebre em duas linhas */
+        white-space: normal; /* Permite quebrar linha se o celular for muito pequeno */
+        line-height: 1.2;
     }
+    .preco { font-size: 18px; }
+    .servico_info p { display: none; /* Esconde texto longo no mobile */ }
+    .duracao { margin-top: 8px; }
 
-    .preco {
-        font-size: 18px;
-    }
-
-    /* Oculta a descrição longa no mobile para um visual premium e direto */
-    .servico_info p {
-        display: none; 
-    }
-
-    .duracao {
-        margin-top: 8px;
-    }
-
-    /* 2. PROFISSIONAIS: Empilhamento Limpo (Sem arrastar pro lado) */
+    /* PROFISSIONAIS MOBILE */
     .profissionais_grid {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 50px; /* Respiro grande entre um barbeiro e outro */
+        gap: 50px;
     }
-
-    .prof_card {
-        text-align: center; /* Centraliza as informações no celular */
-    }
-
+    .prof_card { text-align: center; }
     .prof_img_wrapper {
         width: 100%;
-        height: 380px; /* Altura imponente, mas que cabe inteira na tela */
+        height: 350px; /* Altura controlada */
         border-radius: 12px;
     }
 
-    /*ESTILO INPUTS E BTN MOBILE*/
+    /* FORMULÁRIO MOBILE */
+    .form_wrapper {
+        padding: 30px 15px;
+        box-shadow: none; 
+    }
+    .form_row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
     input, select, textarea {
-        min-height: 48px; /* Padrão Apple/Google para toques com o polegar */
-        font-size: 16px; /* Evita o zoom automático nos iPhones */
+        min-height: 48px; 
+        font-size: 16px; 
         padding: 12px 15px;
         border-radius: 8px;
         width: 100%;
         box-sizing: border-box;
     }
-
     .btn_marcar {
-        min-height: 54px; /* O botão de conversão deve ser o alvo mais fácil da tela */
+        min-height: 54px; 
         font-size: 18px;
-        font-weight: bold;
         width: 100%;
         margin-top: 15px;
         border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
     }
-
-    /*DATA E TIME */
-    input[type="date"], 
-    input[type="time"] {
+    input[type="date"], input[type="time"] {
         appearance: none;
         -webkit-appearance: none;
-        width: 100%;
         display: block;
-        min-height: 48px;
-        box-sizing: border-box;
     }
 
-    /*ESTILO INFORMACAO E MAPA MOBILE*/
+    /* MAPA E FOOTER MOBILE */
     .localizacao_premium {
         height: auto;
         display: flex;
         flex-direction: column-reverse; 
         margin-top: 40px;
     }
-
     .mapa_bg {
         height: 320px; 
         width: 100%;
     }
-
     .box_card_center {
         padding: 30px 15px;
         height: auto;
     }
-
-    .servico_img {
-        height: 160px; /* Reduz a altura das fotos de serviços */
-    }
-    
     .card_info_flutuante {
         position: relative;
         top: 0;
@@ -1315,9 +1239,7 @@ a {
         box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1); 
         margin-bottom: 20px;
     }
-
     .footer_minimal {
-        /*garante que o texto não fique escondido atrás da barra do iPhone*/
         padding-bottom: calc(25px + env(safe-area-inset-bottom)); 
     }
 }
