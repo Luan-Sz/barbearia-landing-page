@@ -181,6 +181,11 @@ a { text-decoration: none; }
 .footer_minimal { background: #050505; padding: 25px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
 .footer_minimal p { font-size: 12px; color: #555; letter-spacing: 1px; }
 
+
+/* OCULTAR ITENS DE CELULAR NO PC */
+.swipe_arrow_mobile { display: none; }
+.texto_mobile { display: none; }
+
 @media (max-width: 768px) {
     /* CORREÇÃO DO ZOOM E BUG IOS */
     .hero, .servicos, .agendamento_barber { background-attachment: scroll; }
@@ -203,19 +208,15 @@ a { text-decoration: none; }
         50% { transform: translateX(10px); opacity: 1; }
     }
     
-    /* NAVBAR E MENU HAMBURGUER (Corrigido e Fluido) */
+    /* NAVBAR E MENU HAMBURGUER */
     .nav_container { padding: 15px; background-color: rgba(0, 0, 0, 0.95); position: sticky; top: 0; z-index: 1000; }
-    
     .hamburger { display: flex; flex-direction: column; gap: 6px; background: transparent; border: none; cursor: pointer; z-index: 1100; padding: 5px; }
     .hamburger span { display: block; width: 28px; height: 3px; background: var(--dourado); transition: transform 0.3s ease, opacity 0.3s ease; border-radius: 2px; }
     
     .nav_menu {
-        display: flex;
-        position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
-        background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        padding-top: 120px;
-        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+        display: flex; position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
+        background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+        padding-top: 120px; transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
         z-index: 1050; box-shadow: -10px 0 30px rgba(0,0,0,0.5);
     }
     .nav_menu ul { flex-direction: column; align-items: center; width: 100%; gap: 40px; }
@@ -224,126 +225,70 @@ a { text-decoration: none; }
     .hamburger.active span:nth-child(2) { opacity: 0; }
     .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-    /* HERO MOBILE */
     .hero { padding: 120px 20px 50px 20px; text-align: center; }
     .titulo_hero { font-size: 32px; line-height: 1.2; }
 
-    /* SOBRE MOBILE */
     .sobre_layout { display: flex !important; flex-direction: column !important; text-align: center; gap: 30px; }
     .sobre_layout .img_wrapper { width: 100%; max-width: 400px; margin: 0 auto; }
     .img_wrapper::after { display: none !important; }
 
-    /* RITUAL MOBILE (Sem matar o texto) */
+    /* RITUAL MOBILE */
     .processo_grid { grid-template-columns: 1fr; gap: 25px; }
     .processo_item { transform: none !important; border-color: #2a2a2a !important; }
     .processo_item img { filter: grayscale(20%) !important; }
     .processo_item .step_num { color: rgba(198, 169, 107, 0.05) !important; }
 
     /* =========================================
-       LAYOUT DE DESLIZAR (SWIPE) PARA AS GRIDS 
+       ARSENAL (Texto Fixo e Fotos Deslizantes)
+       ========================================= */
+    .texto_pc { display: none; } /* Esconde a caixa do mosaico no celular */
+    .texto_mobile { display: block; margin-bottom: 25px; } /* Mostra o texto no topo */
+    
+    /* =========================================
+       LAYOUT DE DESLIZAR (SWIPE) GERAL
        ========================================= */
     .galeria_grid, .servicos_grid, .profissionais_grid {
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
-        overscroll-behavior-x: contain; /* Impede que o celular role na diagonal */
+        overscroll-behavior-x: contain; 
         gap: 20px; 
         padding-bottom: 20px;
         scrollbar-width: none; 
     }
     .galeria_grid::-webkit-scrollbar, .servicos_grid::-webkit-scrollbar, .profissionais_grid::-webkit-scrollbar { display: none; }
     
-    /* Alvo direto dos itens que vão deslizar */
-    .galeria_grid > div, .servicos_grid > div, .profissionais_grid > div {
-        flex: 0 0 85%; /* Cards encorpados ocupando quase a tela toda */
+    .galeria_grid > div, .servicos_grid > .reveal, .profissionais_grid > .reveal {
+        flex: 0 0 85%; /* Cards Encorpados */
         scroll-snap-align: center;
         height: auto;
     }
-
     .galeria .img img { height: 280px; }
 
     /* =========================================
        SERVIÇOS MOBILE (Card Encorpado) 
        ========================================= */
     .servico_card { 
-        display: flex;
-        flex-direction: column;
-        padding: 0; 
-        background: var(--cinza); 
-        height: 100%; /* Padroniza altura na grid */
+        display: flex; flex-direction: column; padding: 0; background: var(--cinza); height: 100%; 
     }
-    
-    .servico_img { 
-        width: 100%; 
-        height: 180px; 
-        border-radius: 8px 8px 0 0; 
-    }
-    
-    .servico_info { 
-        padding: 25px 20px; 
-        width: 100%; 
-        text-align: left; 
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        flex-grow: 1; 
-    }
-    
-    .servico_header { 
-        flex-direction: row; 
-        align-items: center; 
-        padding-bottom: 10px; 
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
-        margin-bottom: 15px;
-    }
-    
+    .servico_img { width: 100%; height: 180px; border-radius: 8px 8px 0 0; }
+    .servico_info { padding: 25px 20px; width: 100%; text-align: left; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
+    .servico_header { flex-direction: row; align-items: center; padding-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); margin-bottom: 15px; }
     .servico_header h3 { font-size: 20px; white-space: normal; line-height: 1.2; }
-    
-    .servico_info p { 
-        display: block; 
-        font-size: 15px;
-        color: #b0b0b0;
-        margin-bottom: 20px;
-    }
-    
+    .servico_info p { display: block; font-size: 15px; color: #b0b0b0; margin-bottom: 20px; }
     .duracao { align-self: flex-start; }
 
     /* =========================================
        PROFISSIONAIS MOBILE (Card Encorpado)
        ========================================= */
     .prof_card { 
-        text-align: left; 
-        background: var(--cinza);
-        border-radius: 12px;
-        padding: 25px; 
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        height: 100%; /* Padroniza altura na grid */
-        display: flex;
-        flex-direction: column;
+        text-align: left; background: var(--cinza); border-radius: 12px; padding: 25px; 
+        border: 1px solid rgba(255, 255, 255, 0.05); height: 100%; display: flex; flex-direction: column;
     }
-    
-    .prof_img_wrapper { 
-        width: 100%; 
-        height: 380px; 
-        margin-bottom: 20px;
-    }
-    
+    .prof_img_wrapper { width: 100%; height: 380px; margin-bottom: 20px; }
     .prof_nome { font-size: 28px; }
-    
-    .extra_info_clean { 
-        opacity: 1 !important; 
-        max-height: none !important; 
-        transform: none !important; 
-        margin-top: 15px; 
-        padding-top: 15px;
-        border-top: 1px solid rgba(255, 255, 255, 0.05); 
-    }
-    
-    .extra_info_clean p {
-        font-size: 15px;
-        margin-bottom: 8px;
-        color: #d1d1d1;
-    }
+    .extra_info_clean { opacity: 1 !important; max-height: none !important; transform: none !important; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+    .extra_info_clean p { font-size: 15px; margin-bottom: 8px; color: #d1d1d1; }
 
     /* FORMULÁRIO E RESTANTE */
     .form_wrapper { padding: 30px 15px; box-shadow: none; }
