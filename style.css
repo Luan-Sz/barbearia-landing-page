@@ -27,6 +27,11 @@ body {
 
 input, select, button, textarea { font-family: inherit; }
 
+/* REGRAS IMPORTANTES DO PC (ESCONDE ITENS DE CELULAR) */
+.hamburger { display: none; }
+.swipe_arrow_mobile { display: none !important; }
+.texto_mobile { display: none !important; }
+
 /* ESTILO TAGS */
 h1 { font-size: 52px; font-weight: 700; font-family: 'Playfair Display', serif; letter-spacing: 1px; }
 h2 { font-size: 36px; margin-bottom: 20px; position: relative; font-weight: 600; font-family: 'Playfair Display', serif; }
@@ -187,12 +192,6 @@ a { text-decoration: none; }
 .footer_minimal { background: #050505; padding: 25px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
 .footer_minimal p { font-size: 12px; color: #555; letter-spacing: 1px; }
 
-/* =========================================
-   FORMT MOBILE (max-width: 768px)
-   ========================================= */
-/* =========================================
-   FORMT MOBILE (max-width: 768px)
-   ========================================= */
 @media (max-width: 768px) {
     /* CORREÇÃO DO ZOOM E BUG IOS */
     .hero, .servicos, .agendamento_barber { background-attachment: scroll; }
@@ -204,7 +203,7 @@ a { text-decoration: none; }
     
     /* ANIMAÇÃO DA SETA DE SWIPE (APENAS MOBILE) */
     .swipe_arrow_mobile {
-        display: flex;
+        display: flex !important;
         justify-content: center;
         margin-bottom: 15px;
         animation: deslizeLateral 2s infinite ease-in-out;
@@ -215,18 +214,20 @@ a { text-decoration: none; }
         50% { transform: translateX(10px); opacity: 1; }
     }
     
-    /* NAVBAR E MENU HAMBURGUER */
+    /* NAVBAR E MENU HAMBURGUER (Fluido e Enxuto) */
     .nav_container { padding: 15px; background-color: rgba(0, 0, 0, 0.95); position: sticky; top: 0; z-index: 1000; }
+    .nav_cta { display: none; } /* Esconde botão agendar extra para limpar o topo */
+
     .hamburger { display: flex; flex-direction: column; gap: 6px; background: transparent; border: none; cursor: pointer; z-index: 1100; padding: 5px; }
     .hamburger span { display: block; width: 28px; height: 3px; background: var(--dourado); transition: transform 0.3s ease, opacity 0.3s ease; border-radius: 2px; }
     
     .nav_menu {
         display: flex; position: fixed; top: 0; right: -100%; 
-        width: 65%; /* <-- REDUZIDO: Aba preta agora ocupa só 65% da tela */
+        width: 65%; /* Menu ocupa só parte da tela */
         height: 100vh;
         background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-        padding-top: 0; /* Removemos o espaçamento esmagador de cima */
-        justify-content: center; /* <-- CENTRALIZA PERFEITAMENTE verticalmente e garante espaço de scroll */
+        padding-top: 0; 
+        justify-content: center; /* Centraliza os links no meio da tela */
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
         z-index: 1050; box-shadow: -10px 0 30px rgba(0,0,0,0.5);
     }
@@ -243,8 +244,8 @@ a { text-decoration: none; }
     .sobre_layout .img_wrapper { width: 100%; max-width: 400px; margin: 0 auto; }
     .img_wrapper::after { display: none !important; }
 
-    /* RITUAL MOBILE */
-    .processo_grid { grid-template-columns: 1fr; gap: 25px; }
+    /* RITUAL MOBILE (Seguro) */
+    .processo_grid { grid-template-columns: 1fr; gap: 25px; display: grid; }
     .processo_item { transform: none !important; border-color: #2a2a2a !important; }
     .processo_item img { filter: grayscale(20%) !important; }
     .processo_item .step_num { color: rgba(198, 169, 107, 0.05) !important; }
@@ -252,26 +253,27 @@ a { text-decoration: none; }
     /* =========================================
        ARSENAL (Texto Fixo e Fotos Deslizantes)
        ========================================= */
-    .texto_pc { display: none; } 
-    .texto_mobile { display: block; margin-bottom: 25px; } 
+    .texto_pc { display: none !important; } 
+    .texto_mobile { display: block !important; margin-bottom: 25px; } 
     
     /* =========================================
-       LAYOUT DE DESLIZAR (SWIPE) GERAL (Com Trava de Eixo)
+       LAYOUT DE DESLIZAR (SWIPE) GERAL E SEGURO
        ========================================= */
     .galeria_grid, .servicos_grid, .profissionais_grid {
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         overscroll-behavior-x: contain; 
-        touch-action: pan-x; /* <-- TRAVA DE EIXO: Deslizou pro lado? Ele trava na horizontal! */
+        touch-action: pan-x; /* Trava de eixo para não deslizar torto */
         gap: 20px; 
         padding-bottom: 20px;
         scrollbar-width: none; 
     }
     .galeria_grid::-webkit-scrollbar, .servicos_grid::-webkit-scrollbar, .profissionais_grid::-webkit-scrollbar { display: none; }
     
+    /* Alvo direto dos itens que vão deslizar */
     .galeria_grid > div, .servicos_grid > .reveal, .profissionais_grid > .reveal {
-        flex: 0 0 85%; /* Cards Encorpados */
+        flex: 0 0 85%; /* Cards Encorpados ocupando 85% */
         scroll-snap-align: center;
         height: auto;
     }
@@ -299,14 +301,16 @@ a { text-decoration: none; }
 
     /* FORMULÁRIO E RESTANTE */
     .form_wrapper { padding: 30px 15px; box-shadow: none; }
-    .form_row { grid-template-columns: 1fr; gap: 20px; }
+    .form_row { grid-template-columns: 1fr; gap: 20px; display: grid; }
+    .form_row_dupla { flex-direction: column; gap: 15px; }
     input, select, textarea { min-height: 48px; font-size: 16px; padding: 12px 15px; border-radius: 8px; width: 100%; box-sizing: border-box; }
-    .btn_marcar { min-height: 54px; font-size: 18px; width: 100%; margin-top: 15px; border-radius: 8px; }
+    .btn_marcar, .btn_agendamento { min-height: 54px; font-size: 18px; width: 100%; margin-top: 15px; border-radius: 8px; grid-column: span 1; }
     input[type="date"], input[type="time"] { appearance: none; -webkit-appearance: none; display: block; }
 
     .localizacao_premium { height: auto; display: flex; flex-direction: column-reverse; margin-top: 40px; }
-    .mapa_bg { height: 320px; width: 100%; }
+    .mapa_bg { height: 320px; width: 100%; position: relative; }
     .box_card_center { padding: 30px 15px; height: auto; }
-    .card_info_flutuante { position: relative; top: 0; padding: 30px 20px; transform: none; box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1); margin-bottom: 20px; border-radius: 12px; }
+    .card_info_flutuante { position: relative; top: 0; padding: 30px 20px; transform: none; box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1); margin-bottom: 20px; border-radius: 12px; max-width: 100%; }
+    
     .footer_minimal { padding-bottom: calc(25px + env(safe-area-inset-bottom)); }
 }
