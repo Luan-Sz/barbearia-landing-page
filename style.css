@@ -436,6 +436,26 @@ a {
     letter-spacing: 1px;
 }
 
+/* BOTAO AGENDAR NAVBAR PC */
+.nav_cta a {
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--dourado);
+    padding: 8px 24px;
+    border: 1px solid var(--dourado);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.nav_cta a:hover {
+    background: var(--dourado);
+    color: var(--preto);
+}
+
 /* ESTILO HEADER E NAVBAR PC */
 .header {
     position: fixed;
