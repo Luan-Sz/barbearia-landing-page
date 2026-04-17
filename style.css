@@ -1002,6 +1002,12 @@ a {
 /*FORMT MOBILE*/
 @media (max-width: 768px) {
     /*ESTILO GERAL E ESPACAMENTO*/
+
+    /*DESLIGA PARALAX (evita bugvisual no IOS)*/
+    .hero, .servicos, .agendamento_barber {
+        background-attachment: scroll;
+    }
+    
     section {
         padding: 50px 15px; /*reduz lateral pra ganhar espaco util*/
     }
@@ -1046,27 +1052,13 @@ a {
     }
 
     /*ESTILO MARCACAO MOBILE*/
-    .agendamento_wrapper {
-        flex-direction: column;
-        border-radius: 12px; 
-        overflow: hidden;
-    }
-
-    .agendamento_conteudo, 
-    .agendamento_form_box {
+    .form_wrapper {
         padding: 40px 20px;
-        text-align: center;
+        box-shadow: none; /* Deixa mais limpo no celular */
     }
 
-    .form_agendamento {
-        grid-template-columns: 1fr;
-        gap: 20px; 
-    }
-
-    .form_row, 
-    .form_row_dupla {
-        display: flex;
-        flex-direction: column;
+    .form_row {
+        grid-template-columns: 1fr; /* Força os inputs a ficarem um embaixo do outro */
         gap: 20px;
     }
 
