@@ -53,19 +53,13 @@ input, select, button, textarea {
     display: none;
 }
 
-.swipe_arrow_mobile {
-    display: none !important;
-}
-
-.texto_mobile {
-    display: none !important;
-}
-
-div.texto_mobile {
-    display: none !important;
-}
-
+.swipe_arrow_mobile,
 div.swipe_arrow_mobile {
+    display: none !important;
+}
+
+.texto_mobile,
+div.texto_mobile {
     display: none !important;
 }
 
@@ -1022,15 +1016,16 @@ a {
     /* novo indicador de swipe premium */
     .swipe_arrow_mobile {
         display: flex !important;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
+        align-items: center; 
+        justify-content: center; 
+        width: 100%; 
         margin-bottom: 25px;
-        font-size: 12px;
-        color: var(--dourado);
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        opacity: 0.8;
+        animation: deslizeLateral 1.5s infinite ease-in-out;
+    }
+
+    @keyframes deslizeLateral {
+        0%, 100% { transform: translateX(-5px); opacity: 0.5; }
+        50% { transform: translateX(5px); opacity: 1; }
     }
     
     /* navbar e menu hamburguer */
@@ -1170,10 +1165,13 @@ a {
     .galeria_grid, .servicos_grid, .profissionais_grid {
         display: flex;
         overflow-x: auto;
+        overflow-y: hidden;
         scroll-snap-type: x mandatory;
-        gap: 15px; 
-        padding: 0 15px 20px 15px; 
-        margin: 0 -15px; /* vaza as margens para não espremer o card */
+        overscroll-behavior-x: contain; 
+        touch-action: pan-x; 
+        gap: 15px; /* Define o espaço exato entre os cards */
+        padding: 0 calc(50vw - 42.5%); /* MÁGICA DA CENTRALIZAÇÃO: Calcula o espaço exato nas laterais baseado no tamanho do card (85%) */
+        padding-bottom: 20px;
         scrollbar-width: none; 
     }
 
@@ -1183,7 +1181,7 @@ a {
     
     /* cards centralizados passando um por vez */
     .galeria_grid > div, .servicos_grid > div, .profissionais_grid > div {
-        flex: 0 0 82%; /* tamanho exato para mostrar o proximo card cortado */
+        flex: 0 0 85%; /* O card ocupa 85% da tela */
         scroll-snap-align: center;
         scroll-snap-stop: always;
         height: auto;
