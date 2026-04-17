@@ -1008,10 +1008,15 @@ a {
         background-attachment: scroll;
     }
     
+    /* 1. GERAL: Reduzindo a "Lupa" */
     section {
-        padding: 50px 15px; /*reduz lateral pra ganhar espaco util*/
+        padding: 40px 15px; 
     }
-
+    
+    h1 { font-size: 38px; }
+    h2, .section_title { font-size: 28px; }
+    .galeria_titulo { font-size: 24px; }
+    
     /*NAVMOBILEBAR*/
     .nav_container {
         padding: 15px;
@@ -1062,6 +1067,32 @@ a {
         gap: 20px;
     }
 
+    /*ESTILO PROFISSIONAL MOBILE (layout arraste pro lado)*/
+    .profissionais_grid,
+    .servicos_grid { 
+        display: flex;
+        overflow-x: auto; 
+        scroll-snap-type: x mandatory; 
+        gap: 15px;
+        padding-bottom: 20px;
+        scrollbar-width: none; 
+    }
+    
+    .profissionais_grid::-webkit-scrollbar,
+    .servicos_grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .prof_card,
+    .servico_card { 
+        flex: 0 0 85%;
+        scroll-snap-align: center;
+    }
+
+    .prof_img_wrapper {
+        height: 320px; /* Altura muito mais elegante e contida */
+    }
+
     /*ESTILO INPUTS E BTN MOBILE*/
     input, select, textarea {
         min-height: 48px; /* Padrão Apple/Google para toques com o polegar */
@@ -1072,7 +1103,7 @@ a {
         box-sizing: border-box;
     }
 
-    .btn_agendamento {
+    .btn_marcar {
         min-height: 54px; /* O botão de conversão deve ser o alvo mais fácil da tela */
         font-size: 18px;
         font-weight: bold;
@@ -1080,6 +1111,17 @@ a {
         margin-top: 15px;
         border-radius: 8px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    /*DATA E TIME */
+    input[type="date"], 
+    input[type="time"] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 100%;
+        display: block;
+        min-height: 48px;
+        box-sizing: border-box;
     }
 
     /*ESTILO INFORMACAO E MAPA MOBILE*/
@@ -1100,13 +1142,23 @@ a {
         height: auto;
     }
 
+    .servico_img {
+        height: 160px; /* Reduz a altura das fotos de serviços */
+    }
+    
     .card_info_flutuante {
         position: relative;
         top: 0;
+        padding: 30px 20px;
         transform: none;
         max-width: 100%;
         border-radius: 12px;
         box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1); 
         margin-bottom: 20px;
+    }
+
+    .footer_minimal {
+        /*garante que o texto não fique escondido atrás da barra do iPhone*/
+        padding-bottom: calc(25px + env(safe-area-inset-bottom)); 
     }
 }
