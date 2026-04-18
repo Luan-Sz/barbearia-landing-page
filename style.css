@@ -63,45 +63,33 @@ div.texto_mobile {
     display: none !important;
 }
 
+/* =========================================
+   INDICADOR DE SCROLL ANIMADO E VISÍVEL
+   ========================================= */
 .scroll-indicator {
     position: fixed;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    z-index: 100; /* Garante que fique acima de tudo */
+    z-index: 100;
     display: none; /* Escondido por padrão no PC */
     opacity: 0.8;
 }
 
-/* Estilo geral (Escondido por padrão no PC) */
-.scroll-indicator {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    z-index: 100; /* Garante que fique acima de tudo */
-    display: none; /* Escondido por padrão no PC */
-    opacity: 0.8;
-}
-
-/* Estilo para a seta "v" */
 .v-arrow {
     font-family: 'Poppins', sans-serif;
     font-size: 32px;
-    color: var(--dourado); /* Usando a cor dourada */
+    color: var(--dourado);
     animation: scrollPulse 1.5s infinite;
 }
 
-/* Animação para piscar e mover a seta */
 @keyframes scrollPulse {
     0% { opacity: 0.3; transform: translateY(0); }
     50% { opacity: 1; transform: translateY(10px); }
     100% { opacity: 0.3; transform: translateY(0); }
 }
 
-/* Classe para esconder quando já rolou */
 .is-scrolled {
     opacity: 0;
     pointer-events: none;
@@ -564,26 +552,6 @@ a {
 
 .nav_menu a:hover::after {
     width: 100%;
-}
-
-/* btn agendar header pc */
-.nav_cta a {
-    display: inline-block;
-    font-family: 'Playfair Display', serif;
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--dourado);
-    padding: 8px 24px;
-    border: 1px solid var(--dourado);
-    border-radius: 3px;
-    transition: all 0.3s ease;
-}
-
-.nav_cta a:hover {
-    background: var(--dourado);
-    color: var(--preto);
 }
 
 /* ESTILO BTN E CTA */
@@ -1230,32 +1198,36 @@ a {
         display: none;
     }
     
-   /* cards centralizados pelo scroll-snap e blindados contra cortes laterais */
-.galeria_grid > div, .servicos_grid > div, .profissionais_grid > div {
-    flex: 0 0 82vw; 
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
-    height: auto;
-    min-width: 0; /* MÁGICA: Impede o Flexbox de esticar e cortar as bordas do card */
-    max-width: 100%;
-}
+    /* cards centralizados pelo scroll-snap e blindados contra cortes laterais */
+    .galeria_grid > div, .servicos_grid > div, .profissionais_grid > div {
+        flex: 0 0 82vw; 
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+        height: auto;
+        min-width: 0; /* MÁGICA: Impede o Flexbox de esticar e cortar as bordas do card */
+        max-width: 100%;
+    }
+
+    .galeria .img img {
+        height: 320px;
+    }
 
     /* =========================================
        ESTADOS DOS CARDS: INATIVO x ATIVO (NO CENTRO)
        ========================================= */
     
     /* SERVIÇOS MOBILE */
-.servico_card {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    background: var(--cinza);
-    height: 100%;
-    width: 100%; /* Força o limite de largura */
-    box-sizing: border-box; /* Garante que borda e padding não aumentem o card */
-    transition: all 0.5s ease;
-    border: 1px solid rgba(255, 255, 255, 0.05); 
-}
+    .servico_card {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        background: var(--cinza);
+        height: 100%;
+        width: 100%; /* Força o limite de largura */
+        box-sizing: border-box; /* Garante que borda e padding não aumentem o card */
+        transition: all 0.5s ease;
+        border: 1px solid rgba(255, 255, 255, 0.05); 
+    }
 
     .servico_img {
         width: 100%;
