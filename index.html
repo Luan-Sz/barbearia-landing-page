@@ -377,6 +377,30 @@
             btnMobile.setAttribute('aria-expanded', false);
         });
     });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Cria uma linha invisível no centro exato da tela (45% de cada lado)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px -45% 0px -45%', 
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Se o card encostar no centro da tela, ele "acende"
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-center');
+                } else {
+                    entry.target.classList.remove('is-center');
+                }
+            });
+        }, observerOptions);
+
+        // Manda o radar vigiar todos os serviços e profissionais
+        const cards = document.querySelectorAll('.servico_card, .prof_card');
+        cards.forEach(card => observer.observe(card));
+    });
 </script>
 </main>
 </body>
