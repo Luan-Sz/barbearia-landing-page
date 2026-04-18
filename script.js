@@ -53,50 +53,41 @@ document.addEventListener("DOMContentLoaded", function () {
             resetButton(botao);
             return;
         }
+        
         //PREPARAÇÃO PARA O FUTURO BACKEND (JAVA)
-       
-        //objeto JSON estruturado.
-        //Spring Boot vai receber no futuro (@RequestBody).
         const agendamentoPayload = {
             clienteNome: nome,
-            clienteTelefone: telefone.replace(/\D/g, ""), // Manda só os números pro banco
+            clienteTelefone: telefone.replace(/\D/g, ""), 
             servicoId: servicoSelect.value, 
             profissionalId: profissionalSelect.value || "qualquer",
-            dataHoraAgendamento: `${data}T${hora}:00` // Padrão ISO 8601
+            dataHoraAgendamento: `${data}T${hora}:00` 
         };
 
        //DISPARO PARA O JAVA
-        fetch("http://localhost:8080/agendamentos", {
-            method: "POST", //intecao de criar algo novo
-            headers: {
-                "Content-Type": "application/json" //informa que a lingua é JSON
-            },
-            body: JSON.stringify(agendamentoPayload) //transforma o objeto JS em texto JSON
-        })
-        .then(resposta => {
-            if (resposta.ok) {
-                console.log("Wakethefuckup, SAMURAI. We have a city to burn! deu certo");
-            } else {
-                console.error("merda, tenta de novo otario. Erro HTTP:", resposta.status);
-            }
-        })
-        .catch(erro => {
-            console.error("Erro de conexão. tu nao rodaria essa merda sem o servidor ta ligado ne filho da puta?", erro);
-        });
+       fetch("http://localhost:8080/agendamentos", {
+           method: "POST", 
+           headers: {
+               "Content-Type": "application/json" 
+           },
+           body: JSON.stringify(agendamentoPayload) 
+       })
+       .then(resposta => {
+           if (resposta.ok) {
+               console.log("Wakethefuckup, SAMURAI. We have a city to burn! deu certo");
+           } else {
+               console.error("Erro HTTP:", resposta.status);
+           }
+       })
+       .catch(erro => {
+           console.error("Erro de conexão. Servidor não está rodando?", erro);
+       });
 
         //INTEGRAÇÃO WHATSAPP
         const servicoTexto = servicoSelect.selectedOptions[0].text;
         const profissionalTexto = profissionalSelect.value ? profissionalSelect.selectedOptions[0].text : "Sem preferência";
         const dataFormatada = data.split("-").reverse().join("/");
 
-        const mensagem = `Olá! Gostaria de agendar um horário:
-    *Nome:* *${nome}* 
-    *Telefone:* *${telefone}*   
-    *Serviço:* ${servicoTexto}
-    *Profissional:* ${profissionalTexto}
-    *Data:* ${dataFormatada}
-    *Hora:* ${hora}`
-    ;
+        const mensagem = `Olá! Gostaria de agendar um horário:\n*Nome:* *${nome}*\n*Telefone:* *${telefone}*\n*Serviço:* ${servicoTexto}\n*Profissional:* ${profissionalTexto}\n*Data:* ${dataFormatada}\n*Hora:* ${hora}`;
 
         const link = `https://wa.me/${CONFIG.whatsappNumero}?text=${encodeURIComponent(mensagem)}`;
 
@@ -111,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
             resetButton(botao);
         }
     });
+
     // Ocultar indicador de scroll ao rolar a página verticalmente
     const scrollIndicator = document.querySelector('.scroll-indicator');
 
@@ -129,9 +121,10 @@ document.addEventListener("DOMContentLoaded", function () {
 //RESET BTN
 function resetButton(botao) {
     if (botao) {
-        botao.innerText = "Agendar pelo WhatsApp";
+        botao.innerText = "Confirmar Agendamento";
         botao.disabled = false;
         botao.style.opacity = "1";
+        botao.style.width = "100%"; // Retorna ao padrão mobile
     }
 }
 
