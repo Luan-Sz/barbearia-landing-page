@@ -1013,8 +1013,8 @@ a {
         font-size: 24px;
     }
     
-    /* novo indicador de swipe com setas duplas */
-    .swipe_arrow_mobile {
+    /* novo indicador de swipe com setas duplas (Forçando a barra contra o PC) */
+    div.swipe_arrow_mobile {
         display: flex !important;
         align-items: center;
         justify-content: center;
@@ -1022,7 +1022,7 @@ a {
         margin-bottom: 25px;
     }
 
-    .swipe_arrow_mobile svg {
+    div.swipe_arrow_mobile svg {
         animation: pulsoLateral 2s infinite;
     }
 
@@ -1182,16 +1182,14 @@ a {
         display: none;
     }
     
-    /* cards centralizados pelo scroll-snap */
+    /* cards centralizados pelo scroll-snap e blindados contra cortes laterais */
     .galeria_grid > div, .servicos_grid > div, .profissionais_grid > div {
         flex: 0 0 82vw; 
         scroll-snap-align: center;
         scroll-snap-stop: always;
         height: auto;
-    }
-
-    .galeria .img img {
-        height: 320px;
+        min-width: 0; /* MÁGICA: Impede o Flexbox de esticar e cortar as bordas do card */
+        max-width: 100%;
     }
 
     /* =========================================
@@ -1205,6 +1203,8 @@ a {
         padding: 0;
         background: var(--cinza);
         height: 100%;
+        width: 100%; /* Força o limite de largura */
+        box-sizing: border-box;
         transition: all 0.5s ease;
         border: 1px solid rgba(255, 255, 255, 0.05); 
     }
