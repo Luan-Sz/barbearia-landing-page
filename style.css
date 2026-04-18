@@ -1075,7 +1075,7 @@ a {
         background: rgba(10, 10, 10, 0.98);
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
-        padding-top: 25vh; /* MÁGICA: Desce 25% da altura da tela */
+        padding-top: 25vh;
         padding-bottom: 50px; 
         justify-content: flex-start;
         overflow-y: auto; 
@@ -1167,7 +1167,6 @@ a {
     /* =========================================
        LAYOUT DE DESLIZAR (SWIPE) FLUIDO E SEGURO
        ========================================= */
-    /* Remove a trava de padding vertical que bugava o scroll nativo */
     .galeria_grid, .servicos_grid, .profissionais_grid {
         display: flex;
         overflow-x: auto;
@@ -1175,7 +1174,6 @@ a {
         -webkit-overflow-scrolling: touch; 
         scroll-snap-type: x mandatory;
         gap: 20px; 
-        /* Padding simples e direto para liberar a rolagem vertical nas bordas */
         padding: 0 5vw 40px 5vw; 
         scrollbar-width: none; 
     }
@@ -1208,11 +1206,9 @@ a {
         background: var(--cinza);
         height: 100%;
         transition: all 0.5s ease;
-        /* Dá um respiro pro card na tela */
         border: 1px solid rgba(255, 255, 255, 0.05); 
     }
 
-    /* Padrão Inativo (Apagado) */
     .servico_img {
         width: 100%;
         height: 180px;
@@ -1222,13 +1218,11 @@ a {
         border-bottom: 2px solid transparent;
     }
 
-    /* Ativo (No centro da tela) */
     .servico_card.is-center .servico_img {
-        filter: brightness(0.9) grayscale(0%); /* Acende a cor */
+        filter: brightness(0.9) grayscale(0%); 
         border-bottom: 2px solid var(--dourado);
     }
 
-    /* Borda dourada em todo o card quando ativo */
     .servico_card.is-center {
         border-color: rgba(198, 169, 107, 0.5);
         box-shadow: 0 10px 30px rgba(0,0,0,0.8);
@@ -1292,24 +1286,20 @@ a {
         font-size: 28px;
     }
 
-    /* Imagem Padrão Inativa (Preto e Branco total e apagado) */
     .prof_card img {
         filter: brightness(0.4) grayscale(100%);
         transition: filter 0.6s ease;
     }
 
-    /* Imagem Ativa no Centro (Cores reais e brilhante) */
     .prof_card.is-center img {
         filter: brightness(1) grayscale(0%);
     }
 
-    /* Borda dourada em todo o card quando ativo */
     .prof_card.is-center {
         border-color: rgba(198, 169, 107, 0.5);
         box-shadow: 0 10px 30px rgba(0,0,0,0.8);
     }
 
-    /* Texto Inativo (Escondido) */
     .extra_info_clean {
         opacity: 0;
         max-height: 0;
@@ -1320,7 +1310,6 @@ a {
         transition: all 0.5s ease;
     }
 
-    /* Texto Ativo no Centro (Revelado) */
     .prof_card.is-center .extra_info_clean {
         opacity: 1;
         max-height: 200px;
@@ -1338,71 +1327,6 @@ a {
     /* ANULANDO HOVER DO PC NO MOBILE */
     .servico_card:hover, .prof_card:hover, .processo_item:hover {
         transform: none !important;
-    }
-
-    /* PROFISSIONAIS MOBILE */
-    .prof_card {
-        text-align: left;
-        background: var(--cinza);
-        border-radius: 12px;
-        padding: 25px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .prof_img_wrapper {
-        width: 100%;
-        height: 380px;
-        margin-bottom: 20px;
-    }
-
-    .prof_nome {
-        font-size: 28px;
-    }
-
-    /* Imagem Padrão Inativa (Preto e Branco total) */
-    .prof_card img {
-        filter: grayscale(100%) contrast(1.1);
-        transition: filter 0.6s ease;
-    }
-
-    /* Imagem Ativa no Centro (Cores reais) */
-    .prof_card.is-center img {
-        filter: grayscale(0%) contrast(1);
-    }
-
-    /* Texto Inativo (Escondido) */
-    .extra_info_clean {
-        opacity: 0;
-        max-height: 0;
-        overflow: hidden;
-        margin-top: 0;
-        padding-top: 0;
-        border-top: none;
-        transition: all 0.5s ease;
-    }
-
-    /* Texto Ativo no Centro (Revelado suavemente) */
-    .prof_card.is-center .extra_info_clean {
-        opacity: 1;
-        max-height: 200px;
-        margin-top: 15px;
-        padding-top: 15px;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .extra_info_clean p {
-        font-size: 15px;
-        margin-bottom: 8px;
-        color: #d1d1d1;
-    }
-
-    /* ANULANDO HOVER DO PC NO MOBILE */
-    .servico_card:hover, .prof_card:hover, .processo_item:hover {
-        transform: none !important;
-        box-shadow: none !important;
     }
 
     /* formulario mobile */
