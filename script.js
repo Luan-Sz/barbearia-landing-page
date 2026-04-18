@@ -1,171 +1,138 @@
 const CONFIG = {
-    whatsappNumero: "5588999978808", // NUMERO DO AGENDAMENTO
+    whatsappNumero: "5588999978808", 
 };
 
-document.addEventListener("DOMContentLoaded", function () {
+// ==========================================
+// 1. MENU HAMBURGUER (RODANDO LIVRE)
+// ==========================================
+const btnMobile = document.getElementById('btn-mobile');
+const menu = document.getElementById('menu');
 
-    // ==========================================
-    // 1. MENU HAMBURGUER (Corrigido)
-    // ==========================================
-    const btnMobile = document.getElementById('btn-mobile');
-    const menu = document.getElementById('menu');
+if (btnMobile && menu) {
+    btnMobile.addEventListener('click', () => {
+        const isActive = menu.classList.toggle('active');
+        btnMobile.classList.toggle('active');
+        btnMobile.setAttribute('aria-expanded', isActive);
+    });
 
-    if (btnMobile && menu) {
-        btnMobile.addEventListener('click', () => {
-            const isActive = menu.classList.toggle('active');
-            btnMobile.classList.toggle('active');
-            btnMobile.setAttribute('aria-expanded', isActive);
+    const links = document.querySelectorAll('.nav_menu a');
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            menu.classList.remove('active');
+            btnMobile.classList.remove('active');
+            btnMobile.setAttribute('aria-expanded', false);
         });
+    });
+}
 
-        const links = document.querySelectorAll('.nav_menu a');
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.remove('active');
-                btnMobile.classList.remove('active');
-                btnMobile.setAttribute('aria-expanded', false);
-            });
-        });
-    }
+// ==========================================
+// 2. EFEITO FAROL (INTERSECTION OBSERVER)
+// ==========================================
+// Ajustado para disparar sempre que o card cruzar o centro exato da tela
+const observerOptions = {
+    root: null,
+    rootMargin: '-50% 0px -50% 0px', // Linha imaginária exatamente no centro vertical da tela
+    threshold: 0
+};
 
-    // ==========================================
-    // 2. RADAR DE SCROLL: EFEITO FAROL (Corrigido)
-    // ==========================================
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px -35% 0px -35%', // Janela de foco no centro
-        threshold: 0
-    };
+const observerCenter = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('is-center');
+        } else {
+            entry.target.classList.remove('is-center');
+        }
+    });
+}, observerOptions);
 
-    const observerCenter = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-center');
-            } else {
-                entry.target.classList.remove('is-center');
-            }
-        });
-    }, observerOptions);
-
+// Dá um tempinho de 100ms pro celular carregar a tela e liga o radar
+setTimeout(() => {
     const cards = document.querySelectorAll('.servico_card, .prof_card');
     cards.forEach(card => observerCenter.observe(card));
+}, 100);
 
-    // ==========================================
-    // 3. FORMULÁRIO E MÁSCARAS
-    // ==========================================
-    const form = document.getElementById("formAgendamento");
+// ==========================================
+// 3. FORMULÁRIO, MÁSCARAS E WHATSAPP
+// ==========================================
+const form = document.getElementById("formAgendamento");
 
-    if (form) {
-        // MASCARA TELEFONE
-        const telefoneInput = document.getElementById("telefone");
-        if (telefoneInput) {
-            telefoneInput.addEventListener("input", function () {
-                let valor = this.value.replace(/\D/g, "");
-                if (valor.length > 11) valor = valor.slice(0, 11);
-                valor = valor.replace(/^(\d{2})(\d)/g, "($1) $2 ");
-                valor = valor.replace(/(\d{4,5})(\d{4})$/, "$1-$2");
-                this.value = valor;
-            });
-        }
-
-        // BLOQUEAR FORM DATA PASSADO
-        const inputData = document.getElementById("data");
-        if (inputData) {
-            const hoje = new Date().toISOString().split("T")[0];
-            inputData.setAttribute("min", hoje);
-        }
-
-        // ENVIAR FORM
-        form.addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const botao = form.querySelector("button");
-            if (botao) {
-                botao.style.width = `${botao.offsetWidth}px`;
-                botao.innerHTML = '<span>Processando...</span>'; 
-                botao.disabled = true;
-                botao.style.opacity = "0.7";
-            }
-
-            // CAPTURA DADOS
-            const nome = document.getElementById("nome").value.trim();
-            const telefone = document.getElementById("telefone").value.trim();
-            const servicoSelect = document.getElementById("servico");
-            const profissionalSelect = document.getElementById("profissional");
-            const data = document.getElementById("data").value;
-            const hora = document.getElementById("hora").value;
-
-            // VALIDACOES
-            if (nome.length < 2 || telefone.replace(/\D/g, "").length < 10 || !data || !hora) {
-                alert("Por favor, preencha todos os campos corretamente.");
-                resetButton(botao);
-                return;
-            }
-            
-            // PREPARAÇÃO PARA O FUTURO BACKEND (JAVA)
-            const agendamentoPayload = {
-                clienteNome: nome,
-                clienteTelefone: telefone.replace(/\D/g, ""), 
-                servicoId: servicoSelect.value, 
-                profissionalId: profissionalSelect.value || "qualquer",
-                dataHoraAgendamento: `${data}T${hora}:00` 
-            };
-
-           // DISPARO PARA O JAVA
-           fetch("http://localhost:8080/agendamentos", {
-               method: "POST", 
-               headers: {
-                   "Content-Type": "application/json" 
-               },
-               body: JSON.stringify(agendamentoPayload) 
-           })
-           .then(resposta => {
-               if (resposta.ok) {
-                   console.log("Wakethefuckup, SAMURAI. We have a city to burn! deu certo");
-               } else {
-                   console.error("Erro HTTP:", resposta.status);
-               }
-           })
-           .catch(erro => {
-               console.error("Erro de conexão. Servidor não está rodando?", erro);
-           });
-
-            // INTEGRAÇÃO WHATSAPP
-            const servicoTexto = servicoSelect.selectedOptions[0].text;
-            const profissionalTexto = profissionalSelect.value ? profissionalSelect.selectedOptions[0].text : "Sem preferência";
-            const dataFormatada = data.split("-").reverse().join("/");
-
-            const mensagem = `Olá! Gostaria de agendar um horário:\n*Nome:* *${nome}*\n*Telefone:* *${telefone}*\n*Serviço:* ${servicoTexto}\n*Profissional:* ${profissionalTexto}\n*Data:* ${dataFormatada}\n*Hora:* ${hora}`;
-
-            const link = `https://wa.me/${CONFIG.whatsappNumero}?text=${encodeURIComponent(mensagem)}`;
-
-            const confirmar = confirm("Tudo pronto! Vamos abrir o seu WhatsApp para finalizar o agendamento?");
-            
-            if (confirmar) {
-                window.open(link, '_blank'); 
-                setTimeout(() => resetButton(botao), 2000);
-                form.reset(); 
-            } else {
-                resetButton(botao);
-            }
+if (form) {
+    const telefoneInput = document.getElementById("telefone");
+    if (telefoneInput) {
+        telefoneInput.addEventListener("input", function () {
+            let valor = this.value.replace(/\D/g, "");
+            if (valor.length > 11) valor = valor.slice(0, 11);
+            valor = valor.replace(/^(\d{2})(\d)/g, "($1) $2 ");
+            valor = valor.replace(/(\d{4,5})(\d{4})$/, "$1-$2");
+            this.value = valor;
         });
     }
 
-    // ==========================================
-    // 4. INDICADOR DE SCROLL ANIMADO
-    // ==========================================
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    if (scrollIndicator) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                scrollIndicator.classList.add('is-scrolled');
-            } else {
-                scrollIndicator.classList.remove('is-scrolled');
-            }
-        });
+    const inputData = document.getElementById("data");
+    if (inputData) {
+        const hoje = new Date().toISOString().split("T")[0];
+        inputData.setAttribute("min", hoje);
     }
-});
 
-// RESET BTN
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const botao = form.querySelector("button");
+        if (botao) {
+            botao.style.width = `${botao.offsetWidth}px`;
+            botao.innerHTML = '<span>Processando...</span>'; 
+            botao.disabled = true;
+            botao.style.opacity = "0.7";
+        }
+
+        const nome = document.getElementById("nome").value.trim();
+        const telefone = document.getElementById("telefone").value.trim();
+        const servicoSelect = document.getElementById("servico");
+        const profissionalSelect = document.getElementById("profissional");
+        const data = document.getElementById("data").value;
+        const hora = document.getElementById("hora").value;
+
+        if (nome.length < 2 || telefone.replace(/\D/g, "").length < 10 || !data || !hora) {
+            alert("Por favor, preencha todos os campos corretamente.");
+            resetButton(botao);
+            return;
+        }
+        
+        const agendamentoPayload = {
+            clienteNome: nome,
+            clienteTelefone: telefone.replace(/\D/g, ""), 
+            servicoId: servicoSelect.value, 
+            profissionalId: profissionalSelect.value || "qualquer",
+            dataHoraAgendamento: `${data}T${hora}:00` 
+        };
+
+       fetch("http://localhost:8080/agendamentos", {
+           method: "POST", 
+           headers: { "Content-Type": "application/json" },
+           body: JSON.stringify(agendamentoPayload) 
+       })
+       .then(resposta => {
+           if (resposta.ok) console.log("Wakethefuckup, SAMURAI. We have a city to burn! deu certo");
+       })
+       .catch(erro => console.error("Erro de conexão", erro));
+
+        const servicoTexto = servicoSelect.selectedOptions[0].text;
+        const profissionalTexto = profissionalSelect.value ? profissionalSelect.selectedOptions[0].text : "Sem preferência";
+        const dataFormatada = data.split("-").reverse().join("/");
+
+        const mensagem = `Olá! Gostaria de agendar um horário:\n*Nome:* *${nome}*\n*Telefone:* *${telefone}*\n*Serviço:* ${servicoTexto}\n*Profissional:* ${profissionalTexto}\n*Data:* ${dataFormatada}\n*Hora:* ${hora}`;
+        const link = `https://wa.me/${CONFIG.whatsappNumero}?text=${encodeURIComponent(mensagem)}`;
+
+        if (confirm("Tudo pronto! Vamos abrir o seu WhatsApp para finalizar o agendamento?")) {
+            window.open(link, '_blank'); 
+            setTimeout(() => resetButton(botao), 2000);
+            form.reset(); 
+        } else {
+            resetButton(botao);
+        }
+    });
+}
+
 function resetButton(botao) {
     if (botao) {
         botao.innerText = "Confirmar Agendamento";
@@ -176,10 +143,10 @@ function resetButton(botao) {
 }
 
 // ==========================================
-// 5. SCROLL REVEAL (ANIMAÇÃO DE ENTRADA)
+// 4. SCROLL REVEAL E CLIQUES NOS CARDS
 // ==========================================
 const revealElements = document.querySelectorAll(".reveal");
-const revealObserver = new IntersectionObserver((entries, observer) => {
+const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add("active");
@@ -187,19 +154,12 @@ const revealObserver = new IntersectionObserver((entries, observer) => {
             entry.target.classList.remove("active");
         }
     });
-}, {
-    root: null,
-    threshold: 0.15, 
-});
+}, { root: null, threshold: 0.15 });
 
 revealElements.forEach(el => revealObserver.observe(el));
 
-// ==========================================
-// 6. CLIQUE NOS CARDS -> ROLA PRO FORM
-// ==========================================
 function setupCardClick(seletorCard, idSelectForm, dataAttribute, focusTargetId) {
     const cards = document.querySelectorAll(seletorCard);
-    
     cards.forEach(card => {
         card.addEventListener("click", () => {
             const valor = card.getAttribute(dataAttribute);
@@ -208,12 +168,10 @@ function setupCardClick(seletorCard, idSelectForm, dataAttribute, focusTargetId)
             
             if (sectionForm && selectTarget) {
                 sectionForm.scrollIntoView({ behavior: "smooth" });
-                
                 setTimeout(() => {
                     selectTarget.value = valor;
                     selectTarget.style.borderColor = "var(--dourado)";
                     setTimeout(() => selectTarget.style.borderColor = "", 1500);
-
                     document.getElementById(focusTargetId).focus();
                 }, 600); 
             }
