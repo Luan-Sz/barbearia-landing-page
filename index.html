@@ -360,6 +360,7 @@
 
 <script src="script.js"></script>
 <script>
+    // Controle do Menu Hamburger
     const btnMobile = document.getElementById('btn-mobile');
     const menu = document.getElementById('menu');
 
@@ -378,17 +379,17 @@
         });
     });
 
+    // Radar de Scroll Profissional (Intersection Observer)
     document.addEventListener("DOMContentLoaded", function() {
-        // Cria uma linha invisível no centro exato da tela (45% de cada lado)
+        // Alargamos a zona de detecção para -35% (funciona melhor em swipes rápidos)
         const observerOptions = {
             root: null,
-            rootMargin: '0px -45% 0px -45%', 
+            rootMargin: '0px -35% 0px -35%', 
             threshold: 0
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                // Se o card encostar no centro da tela, ele "acende"
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-center');
                 } else {
@@ -397,7 +398,7 @@
             });
         }, observerOptions);
 
-        // Manda o radar vigiar todos os serviços e profissionais
+        // Importante: No HTML o observer vigia o '.reveal' pai, mas a classe entra no filho
         const cards = document.querySelectorAll('.servico_card, .prof_card');
         cards.forEach(card => observer.observe(card));
     });
