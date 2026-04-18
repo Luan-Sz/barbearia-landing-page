@@ -63,38 +63,6 @@ div.texto_mobile {
     display: none !important;
 }
 
-/* =========================================
-   INDICADOR DE SCROLL ANIMADO E VISÍVEL
-   ========================================= */
-.scroll-indicator {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    z-index: 100;
-    display: none; /* Escondido por padrão no PC */
-    opacity: 0.8;
-}
-
-.v-arrow {
-    font-family: 'Poppins', sans-serif;
-    font-size: 32px;
-    color: var(--dourado);
-    animation: scrollPulse 1.5s infinite;
-}
-
-@keyframes scrollPulse {
-    0% { opacity: 0.3; transform: translateY(0); }
-    50% { opacity: 1; transform: translateY(10px); }
-    100% { opacity: 0.3; transform: translateY(0); }
-}
-
-.is-scrolled {
-    opacity: 0;
-    pointer-events: none;
-}
-
 /* ESTILO TAGS */
 h1 {
     font-size: 52px;
@@ -1007,10 +975,6 @@ a {
     /* evita bug ios */
     .hero, .servicos, .agendamento_barber {
         background-attachment: scroll;
-    }
-
-    div.scroll-indicator {
-        display: block !important;
     }
     
     section {
