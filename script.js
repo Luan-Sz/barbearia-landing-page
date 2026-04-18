@@ -111,6 +111,19 @@ document.addEventListener("DOMContentLoaded", function () {
             resetButton(botao);
         }
     });
+    // Ocultar indicador de scroll ao rolar a página verticalmente
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+
+    if (scrollIndicator) {
+        window.addEventListener('scroll', () => {
+            // Se rolou mais de 100px para baixo, esconde o indicador
+            if (window.scrollY > 100) {
+                scrollIndicator.classList.add('is-scrolled');
+            } else {
+                scrollIndicator.classList.remove('is-scrolled');
+            }
+        });
+    }
 });
 
 //RESET BTN
