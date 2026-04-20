@@ -107,15 +107,10 @@ if (form) {
     }
 
     form.addEventListener("submit", function (event) {
+        // 1. OBRIGA O NAVEGADOR A PARAR (A MÁGICA ACONTECE AQUI)
         event.preventDefault();
 
         const botao = form.querySelector("button");
-        if (botao) {
-            botao.style.width = `${botao.offsetWidth}px`;
-            botao.innerHTML = '<span>Processando...</span>'; 
-            botao.disabled = true;
-            botao.style.opacity = "0.7";
-        }
 
         const nome = document.getElementById("nome").value.trim();
         const telefone = document.getElementById("telefone").value.trim();
@@ -124,31 +119,46 @@ if (form) {
         const data = document.getElementById("data").value;
         const hora = document.getElementById("hora").value;
 
-        //VALIDACAO ERRO POR ERRO
-        limparErros(); // Limpa a tela antes de testar de novo
+        // 2. LIMPA OS ERROS ANTIGOS DA TELA
+        limparErros();
+
+        // 3. A NOSSA VALIDAÇÃO INLINE (ERRO POR ERRO)
+        let temErro = false; // Cria uma "bandeira" de erro
 
         if (nome.length < 2) {
             mostrarErroInput("nome", "Por favor, informe seu nome.");
-            resetButton(botao);
-            return;
+            temErro = true;
         }
 
         if (telefone.replace(/\D/g, "").length < 10) {
             mostrarErroInput("telefone", "Informe um WhatsApp válido com DDD.");
-            resetButton(botao);
-            return;
+            temErro = true;
         }
 
         if (!data) {
             mostrarErroInput("data", "Escolha a data do agendamento.");
-            resetButton(botao);
-            return;
+            temErro = true;
         }
 
         if (!hora) {
             mostrarErroInput("hora", "Escolha o horário do agendamento.");
+            temErro = true;
+        }
+
+        // Se a bandeira de erro foi levantada, PÁRA O CÓDIGO AQUI
+        if (temErro) {
             resetButton(botao);
-            return;
+            return; 
+        }
+
+        // --- A PARTIR DAQUI SÓ RODA SE TUDO ESTIVER 100% CORRETO ---
+        
+        // Efeito de processando no botão
+        if (botao) {
+            botao.style.width = `${botao.offsetWidth}px`;
+            botao.innerHTML = '<span>Processando...</span>'; 
+            botao.disabled = true;
+            botao.style.opacity = "0.7";
         }
         
         const agendamentoPayload = {
@@ -159,15 +169,15 @@ if (form) {
             dataHoraAgendamento: `${data}T${hora}:00` 
         };
 
-       fetch("http://localhost:8080/agendamentos", {
-           method: "POST", 
-           headers: { "Content-Type": "application/json" },
-           body: JSON.stringify(agendamentoPayload) 
-       })
-       .then(resposta => {
-           if (resposta.ok) console.log("Wakethefuckup, SAMURAI. We have a city to burn! deu certo");
-       })
-       .catch(erro => console.error("Erro de conexão", erro));
+        fetch("http://localhost:8080/agendamentos", {
+            method: "POST", 
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(agendamentoPayload) 
+        })
+        .then(resposta => {
+            if (resposta.ok) console.log("Wakethefuckup, SAMURAI. We have a city to burn! deu certo");
+        })
+        .catch(erro => console.error("Erro de conexão", erro));
 
         const servicoTexto = servicoSelect.selectedOptions[0].text;
         const profissionalTexto = profissionalSelect.value ? profissionalSelect.selectedOptions[0].text : "Sem preferência";
@@ -194,7 +204,6 @@ function resetButton(botao) {
         botao.style.width = "100%"; 
     }
 }
-
 
 //SCROLL REVEAL E CLIQUES NOS CARDS
 const revealElements = document.querySelectorAll(".reveal");
