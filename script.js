@@ -117,8 +117,31 @@ if (form) {
         const data = document.getElementById("data").value;
         const hora = document.getElementById("hora").value;
 
-        if (nome.length < 2 || telefone.replace(/\D/g, "").length < 10 || !data || !hora) {
-            mostrarAvisoPremium("Por favor, preencha o seu nome completo e um número de WhatsApp válido.");
+        //VALIDACAO ERRO POR ERRO
+        if (nome.length < 2) {
+            mostrarAvisoPremium("Por favor, informe seu nome.");
+            document.getElementById("nome").focus(); //poe o cursor pro erro
+            resetButton(botao);
+            return;
+        }
+
+        if (telefone.replace(/\D/g, "").length < 10) {
+            mostrarAvisoPremium("Informe um WhatsApp válido com DDD.");
+            document.getElementById("telefone").focus();
+            resetButton(botao);
+            return;
+        }
+
+        if (!data) {
+            mostrarAvisoPremium("Escolha a data do agendamento.");
+            document.getElementById("data").focus();
+            resetButton(botao);
+            return;
+        }
+
+        if (!hora) {
+            mostrarAvisoPremium("Escolha o horário do agendamento.");
+            document.getElementById("hora").focus();
             resetButton(botao);
             return;
         }
