@@ -2,18 +2,19 @@ const CONFIG = {
     whatsappNumero: "5588999978808", 
 };
 
-//ALERT ERRO POR ERRO
+// ==========================================
+// 1. ALERT ERRO POR ERRO (PADRÃO MERCADO)
+// ==========================================
 function mostrarErroInput(inputId, mensagem) {
     const input = document.getElementById(inputId);
     input.classList.add('input-erro');
     
-    //texto erro vermlho
     const spanErro = document.createElement('span');
     spanErro.className = 'mensagem-erro';
     spanErro.innerText = mensagem;
     
-    //mensagem erro no input
-    input.parentNode.insertBefore(spanErro, input.nextSibling);
+    // insertAdjacentElement garante que o texto vai APÓS o input, sem quebrar a div do formulário
+    input.insertAdjacentElement('afterend', spanErro);
     
     input.focus();
 }
@@ -23,7 +24,9 @@ function limparErros() {
     document.querySelectorAll('.mensagem-erro').forEach(el => el.remove());
 }
 
-// MENU HAMBURGUER
+// ==========================================
+// 2. MENU HAMBURGUER
+// ==========================================
 const btnMobile = document.getElementById('btn-mobile');
 const menu = document.getElementById('menu');
 
@@ -44,8 +47,9 @@ if (btnMobile && menu) {
     });
 }
 
-//FAROL EFFECT (INTERSECTION OBSERVER)
-//ajuste para disparar assim que o card estiver centralizado
+// ==========================================
+// 3. EFEITO FAROL (INTERSECTION OBSERVER)
+// ==========================================
 const observerOptions = {
     root: null,
     rootMargin: '-50% 0px -50% 0px', 
@@ -62,16 +66,18 @@ const observerCenter = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-//tempo de 100ms pra ligar a tela e depois o radar
 setTimeout(() => {
     const cards = document.querySelectorAll('.servico_card, .prof_card');
     cards.forEach(card => observerCenter.observe(card));
 }, 100);
 
-//FORM, MASCARA E WHATSAPP
+// ==========================================
+// 4. FORMULÁRIO E VALIDAÇÃO
+// ==========================================
 const form = document.getElementById("formAgendamento");
 
 if (form) {
+    // MÁSCARA TELEFONE
     const telefoneInput = document.getElementById("telefone");
     if (telefoneInput) {
         telefoneInput.addEventListener("input", function () {
@@ -83,21 +89,18 @@ if (form) {
         });
     }
 
-    //BLOQUEAR DATA PASSADO FORM (TRAVA DUPLA) 
+    // BLOQUEAR DATA PASSADO FORM 
     const inputData = document.getElementById("data");
     if (inputData) {
-        //pega a data exata no fuso BR
         const dataAtual = new Date();
         dataAtual.setMinutes(dataAtual.getMinutes() - dataAtual.getTimezoneOffset());
         const hoje = dataAtual.toISOString().split("T")[0];
 
-        //1 TRAVA - VISUAL
         inputData.setAttribute("min", hoje);
 
-        //2 TRAVA - MOBILE
         inputData.addEventListener("change", function () {
             if (this.value < hoje) {
-                limparErros(); //limpa antes de mostrar
+                limparErros(); 
                 mostrarErroInput("data", "Data no passado. Reajustada para hoje.");
                 this.value = hoje; 
             } else {
@@ -106,12 +109,11 @@ if (form) {
         });
     }
 
+    // ENVIO DO FORMULÁRIO
     form.addEventListener("submit", function (event) {
-        // 1. OBRIGA O NAVEGADOR A PARAR (A MÁGICA ACONTECE AQUI)
-        event.preventDefault();
+        event.preventDefault(); // Trava o envio nativo
 
         const botao = form.querySelector("button");
-
         const nome = document.getElementById("nome").value.trim();
         const telefone = document.getElementById("telefone").value.trim();
         const servicoSelect = document.getElementById("servico");
@@ -119,41 +121,38 @@ if (form) {
         const data = document.getElementById("data").value;
         const hora = document.getElementById("hora").value;
 
-        // 2. LIMPA OS ERROS ANTIGOS DA TELA
+        // Limpa a tela inteira antes de testar os erros de novo
         limparErros();
 
-        // 3. A NOSSA VALIDAÇÃO INLINE (ERRO POR ERRO)
-        let temErro = false; // Cria uma "bandeira" de erro
+        // VALIDAÇÃO INLINE SEQUENCIAL (O Padrão Ouro)
+        // O return faz o código parar imediatamente se achar erro.
 
         if (nome.length < 2) {
             mostrarErroInput("nome", "Por favor, informe seu nome.");
-            temErro = true;
-        }
-
-        if (telefone.replace(/\D/g, "").length < 10) {
-            mostrarErroInput("telefone", "Informe um WhatsApp válido com DDD.");
-            temErro = true;
-        }
-
-        if (!data) {
-            mostrarErroInput("data", "Escolha a data do agendamento.");
-            temErro = true;
-        }
-
-        if (!hora) {
-            mostrarErroInput("hora", "Escolha o horário do agendamento.");
-            temErro = true;
-        }
-
-        // Se a bandeira de erro foi levantada, PÁRA O CÓDIGO AQUI
-        if (temErro) {
             resetButton(botao);
             return; 
         }
 
-        // --- A PARTIR DAQUI SÓ RODA SE TUDO ESTIVER 100% CORRETO ---
+        if (telefone.replace(/\D/g, "").length < 10) {
+            mostrarErroInput("telefone", "Informe um WhatsApp válido.");
+            resetButton(botao);
+            return;
+        }
+
+        if (!data) {
+            mostrarErroInput("data", "Escolha a data do agendamento.");
+            resetButton(botao);
+            return;
+        }
+
+        if (!hora) {
+            mostrarErroInput("hora", "Escolha o horário do agendamento.");
+            resetButton(botao);
+            return;
+        }
+
+        // --- SE PASSOU POR TUDO ACIMA, SUCESSO! ---
         
-        // Efeito de processando no botão
         if (botao) {
             botao.style.width = `${botao.offsetWidth}px`;
             botao.innerHTML = '<span>Processando...</span>'; 
@@ -205,7 +204,9 @@ function resetButton(botao) {
     }
 }
 
-//SCROLL REVEAL E CLIQUES NOS CARDS
+// ==========================================
+// 5. SCROLL REVEAL E CLIQUES NOS CARDS
+// ==========================================
 const revealElements = document.querySelectorAll(".reveal");
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
