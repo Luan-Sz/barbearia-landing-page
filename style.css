@@ -429,21 +429,16 @@ a {
 
 .mensagem-erro {
     color: #ff4d4d;
-    font-size: 12px;
-    font-family: 'Poppins', sans-serif;
-    margin-top: -12px;
-    margin-bottom: 15px;
+    font-size: 11px;
+    margin-top: 4px;
     display: block;
-    text-align: left;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 @keyframes shake {
-    0% { transform: translateX(0); }
+    0%, 100% { transform: translateX(0); }
     25% { transform: translateX(-5px); }
-    50% { transform: translateX(5px); }
-    75% { transform: translateX(-5px); }
-    100% { transform: translateX(0); }
+    75% { transform: translateX(5px); }
 }
 
 /* ESTILO TITULOS SECTIONS */
