@@ -2,9 +2,8 @@ const CONFIG = {
     whatsappNumero: "5588999978808", 
 };
 
-// ==========================================
-// 1. MENU HAMBURGUER (RODANDO LIVRE)
-// ==========================================
+
+// MENU HAMBURGUER
 const btnMobile = document.getElementById('btn-mobile');
 const menu = document.getElementById('menu');
 
@@ -25,13 +24,11 @@ if (btnMobile && menu) {
     });
 }
 
-// ==========================================
-// 2. EFEITO FAROL (INTERSECTION OBSERVER)
-// ==========================================
-// Ajustado para disparar sempre que o card cruzar o centro exato da tela
+//FAROL EFFECT (INTERSECTION OBSERVER)
+//ajuste para disparar assim que o card estiver centralizado
 const observerOptions = {
     root: null,
-    rootMargin: '-50% 0px -50% 0px', // Linha imaginária exatamente no centro vertical da tela
+    rootMargin: '-50% 0px -50% 0px', 
     threshold: 0
 };
 
@@ -45,15 +42,13 @@ const observerCenter = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Dá um tempinho de 100ms pro celular carregar a tela e liga o radar
+//tempo de 100ms pra ligar a tela e depois o radar
 setTimeout(() => {
     const cards = document.querySelectorAll('.servico_card, .prof_card');
     cards.forEach(card => observerCenter.observe(card));
 }, 100);
 
-// ==========================================
-// 3. FORMULÁRIO, MÁSCARAS E WHATSAPP
-// ==========================================
+//FORM, MASCARA E WHATSAPP
 const form = document.getElementById("formAgendamento");
 
 if (form) {
@@ -68,10 +63,24 @@ if (form) {
         });
     }
 
+    //BLOQUEAR DATA PASSADO FORM (TRAVA DUPLA) 
     const inputData = document.getElementById("data");
     if (inputData) {
-        const hoje = new Date().toISOString().split("T")[0];
+        //pega a data exata no fuso BR
+        const dataAtual = new Date();
+        dataAtual.setMinutes(dataAtual.getMinutes() - dataAtual.getTimezoneOffset());
+        const hoje = dataAtual.toISOString().split("T")[0];
+
+        //1 TRAVA - VISUAL
         inputData.setAttribute("min", hoje);
+
+        //2 TRAVA - MOBILE
+        inputData.addEventListener("change", function () {
+            if (this.value < hoje) {
+                alert("Wakethefuckup, Samurai! Selecione uma data válida a partir de hoje.");
+                this.value = hoje; //força a data de hoje pra não bugar o envio
+            }
+        });
     }
 
     form.addEventListener("submit", function (event) {
@@ -142,9 +151,8 @@ function resetButton(botao) {
     }
 }
 
-// ==========================================
-// 4. SCROLL REVEAL E CLIQUES NOS CARDS
-// ==========================================
+
+//SCROLL REVEAL E CLIQUES NOS CARDS
 const revealElements = document.querySelectorAll(".reveal");
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
