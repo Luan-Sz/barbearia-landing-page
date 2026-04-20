@@ -2,21 +2,25 @@ const CONFIG = {
     whatsappNumero: "5588999978808", 
 };
 
-function mostrarAvisoPremium(mensagem) {
-    const toast = document.createElement("div");
-    toast.innerText = mensagem;
-    toast.style.cssText = "position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #111; color: #c6a96b; padding: 15px 25px; border-radius: 8px; z-index: 9999; border: 1px solid #c6a96b; font-family: 'Poppins', sans-serif; font-size: 14px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.8); opacity: 0; transition: opacity 0.3s ease;";
+//ALERT ERRO POR ERRO
+function mostrarErroInput(inputId, mensagem) {
+    const input = document.getElementById(inputId);
+    input.classList.add('input-erro');
     
-    document.body.appendChild(toast);
+    //texto erro vermlho
+    const spanErro = document.createElement('span');
+    spanErro.className = 'mensagem-erro';
+    spanErro.innerText = mensagem;
     
-    //animacao entrada
-    setTimeout(() => toast.style.opacity = "1", 10);
+    //mensagem erro no input
+    input.parentNode.insertBefore(spanErro, input.nextSibling);
     
-    //some e quebra depois de 4sec
-    setTimeout(() => {
-        toast.style.opacity = "0";
-        setTimeout(() => toast.remove(), 300);
-    }, 4000);
+    input.focus();
+}
+
+function limparErros() {
+    document.querySelectorAll('.input-erro').forEach(el => el.classList.remove('input-erro'));
+    document.querySelectorAll('.mensagem-erro').forEach(el => el.remove());
 }
 
 // MENU HAMBURGUER
@@ -93,8 +97,11 @@ if (form) {
         //2 TRAVA - MOBILE
         inputData.addEventListener("change", function () {
             if (this.value < hoje) {
-                mostrarAvisoPremium("Data inválida. Selecione uma data a partir de hoje.");
+                limparErros(); //limpa antes de mostrar
+                mostrarErroInput("data", "Data no passado. Reajustada para hoje.");
                 this.value = hoje; 
+            } else {
+                limparErros();
             }
         });
     }
@@ -118,30 +125,28 @@ if (form) {
         const hora = document.getElementById("hora").value;
 
         //VALIDACAO ERRO POR ERRO
+        limparErros(); // Limpa a tela antes de testar de novo
+
         if (nome.length < 2) {
-            mostrarAvisoPremium("Por favor, informe seu nome.");
-            document.getElementById("nome").focus(); //poe o cursor pro erro
+            mostrarErroInput("nome", "Por favor, informe seu nome.");
             resetButton(botao);
             return;
         }
 
         if (telefone.replace(/\D/g, "").length < 10) {
-            mostrarAvisoPremium("Informe um WhatsApp válido com DDD.");
-            document.getElementById("telefone").focus();
+            mostrarErroInput("telefone", "Informe um WhatsApp válido com DDD.");
             resetButton(botao);
             return;
         }
 
         if (!data) {
-            mostrarAvisoPremium("Escolha a data do agendamento.");
-            document.getElementById("data").focus();
+            mostrarErroInput("data", "Escolha a data do agendamento.");
             resetButton(botao);
             return;
         }
 
         if (!hora) {
-            mostrarAvisoPremium("Escolha o horário do agendamento.");
-            document.getElementById("hora").focus();
+            mostrarErroInput("hora", "Escolha o horário do agendamento.");
             resetButton(botao);
             return;
         }
