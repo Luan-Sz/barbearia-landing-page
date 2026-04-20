@@ -2,6 +2,22 @@ const CONFIG = {
     whatsappNumero: "5588999978808", 
 };
 
+function mostrarAvisoPremium(mensagem) {
+    const toast = document.createElement("div");
+    toast.innerText = mensagem;
+    toast.style.cssText = "position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #111; color: #c6a96b; padding: 15px 25px; border-radius: 8px; z-index: 9999; border: 1px solid #c6a96b; font-family: 'Poppins', sans-serif; font-size: 14px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.8); opacity: 0; transition: opacity 0.3s ease;";
+    
+    document.body.appendChild(toast);
+    
+    //animacao entrada
+    setTimeout(() => toast.style.opacity = "1", 10);
+    
+    //some e quebra depois de 4sec
+    setTimeout(() => {
+        toast.style.opacity = "0";
+        setTimeout(() => toast.remove(), 300);
+    }, 4000);
+}
 
 // MENU HAMBURGUER
 const btnMobile = document.getElementById('btn-mobile');
@@ -77,8 +93,8 @@ if (form) {
         //2 TRAVA - MOBILE
         inputData.addEventListener("change", function () {
             if (this.value < hoje) {
-                alert("Data inválida. Por favor, selecione uma data a partir de hoje para prosseguir com o agendamento.");
-                this.value = hoje; //força a data de hoje pra não bugar o envio
+                mostrarAvisoPremium("Data inválida. Selecione uma data a partir de hoje.");
+                this.value = hoje; 
             }
         });
     }
@@ -102,7 +118,7 @@ if (form) {
         const hora = document.getElementById("hora").value;
 
         if (nome.length < 2 || telefone.replace(/\D/g, "").length < 10 || !data || !hora) {
-            alert("Por favor, preencha todos os campos corretamente.");
+            mostrarAvisoPremium("Por favor, preencha o seu nome completo e um número de WhatsApp válido.");
             resetButton(botao);
             return;
         }
