@@ -77,7 +77,7 @@ if (form) {
         //2 TRAVA - MOBILE
         inputData.addEventListener("change", function () {
             if (this.value < hoje) {
-                alert("Wakethefuckup, Samurai! Selecione uma data válida a partir de hoje.");
+                alert("Data inválida. Por favor, selecione uma data a partir de hoje para prosseguir com o agendamento.");
                 this.value = hoje; //força a data de hoje pra não bugar o envio
             }
         });
