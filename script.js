@@ -2,9 +2,7 @@ const CONFIG = {
     whatsappNumero: "5588999978808", 
 };
 
-// ==========================================
-// 1. ALERT ERRO POR ERRO (PADRÃO MERCADO)
-// ==========================================
+//ALERT ERRO POR ERRO
 function mostrarErroInput(inputId, mensagem) {
     const input = document.getElementById(inputId);
     input.classList.add('input-erro');
@@ -13,7 +11,6 @@ function mostrarErroInput(inputId, mensagem) {
     spanErro.className = 'mensagem-erro';
     spanErro.innerText = mensagem;
     
-    // insertAdjacentElement garante que o texto vai APÓS o input, sem quebrar a div do formulário
     input.insertAdjacentElement('afterend', spanErro);
     
     input.focus();
@@ -24,9 +21,7 @@ function limparErros() {
     document.querySelectorAll('.mensagem-erro').forEach(el => el.remove());
 }
 
-// ==========================================
-// 2. MENU HAMBURGUER
-// ==========================================
+//MENU HAMBURGER
 const btnMobile = document.getElementById('btn-mobile');
 const menu = document.getElementById('menu');
 
@@ -47,9 +42,7 @@ if (btnMobile && menu) {
     });
 }
 
-// ==========================================
-// 3. EFEITO FAROL (INTERSECTION OBSERVER)
-// ==========================================
+//FAROL EFFECT
 const observerOptions = {
     root: null,
     rootMargin: '-50% 0px -50% 0px', 
@@ -71,13 +64,11 @@ setTimeout(() => {
     cards.forEach(card => observerCenter.observe(card));
 }, 100);
 
-// ==========================================
-// 4. FORMULÁRIO E VALIDAÇÃO
-// ==========================================
+//FORMS E VALIDACO
 const form = document.getElementById("formAgendamento");
 
 if (form) {
-    // MÁSCARA TELEFONE
+    //MASCARA TELEFONE
     const telefoneInput = document.getElementById("telefone");
     if (telefoneInput) {
         telefoneInput.addEventListener("input", function () {
@@ -89,7 +80,7 @@ if (form) {
         });
     }
 
-    // BLOQUEAR DATA PASSADO FORM 
+    //BLOQUEAR DATA PASSADO FORM
     const inputData = document.getElementById("data");
     if (inputData) {
         const dataAtual = new Date();
@@ -109,9 +100,9 @@ if (form) {
         });
     }
 
-    // ENVIO DO FORMULÁRIO
+    //ENVIO FORM
     form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Trava o envio nativo
+        event.preventDefault(); 
 
         const botao = form.querySelector("button");
         const nome = document.getElementById("nome").value.trim();
@@ -121,11 +112,10 @@ if (form) {
         const data = document.getElementById("data").value;
         const hora = document.getElementById("hora").value;
 
-        // Limpa a tela inteira antes de testar os erros de novo
+        //limpa antes de fazer a validacao
         limparErros();
 
-        // VALIDAÇÃO INLINE SEQUENCIAL (O Padrão Ouro)
-        // O return faz o código parar imediatamente se achar erro.
+        // VALIDACAO ERRO POR ERRO
 
         if (nome.length < 2) {
             mostrarErroInput("nome", "Por favor, informe seu nome.");
@@ -185,13 +175,14 @@ if (form) {
         const mensagem = `Olá! Gostaria de agendar um horário:\n*Nome:* *${nome}*\n*Telefone:* *${telefone}*\n*Serviço:* ${servicoTexto}\n*Profissional:* ${profissionalTexto}\n*Data:* ${dataFormatada}\n*Hora:* ${hora}`;
         const link = `https://wa.me/${CONFIG.whatsappNumero}?text=${encodeURIComponent(mensagem)}`;
 
-        if (confirm("Tudo pronto! Vamos abrir o seu WhatsApp para finalizar o agendamento?")) {
-            window.open(link, '_blank'); 
-            setTimeout(() => resetButton(botao), 2000);
-            form.reset(); 
-        } else {
+        //redirecionamento whatsapp
+        window.open(link, '_blank'); 
+        
+        //2 sec abre e limpa form
+        setTimeout(() => {
             resetButton(botao);
-        }
+            form.reset();
+        }, 2000);
     });
 }
 
@@ -204,9 +195,7 @@ function resetButton(botao) {
     }
 }
 
-// ==========================================
-// 5. SCROLL REVEAL E CLIQUES NOS CARDS
-// ==========================================
+//SCROLL REVEAL E CLIQUES NOS CARDS
 const revealElements = document.querySelectorAll(".reveal");
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
