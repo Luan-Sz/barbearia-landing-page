@@ -424,21 +424,29 @@ a {
 /*ESTILO ERRO POR ERRO*/
 .input-erro {
     border-color: #ff4d4d !important;
+    background-color: rgba(255, 77, 77, 0.05) !important; /* Fundo avermelhado bem suave */
     animation: shake 0.4s ease-in-out;
 }
 
 .mensagem-erro {
     color: #ff4d4d;
-    font-size: 11px;
-    margin-top: 4px;
-    display: block;
-    font-weight: 600;
+    font-size: 12px;
+    margin-top: 6px;
+    display: block; /* Força a ficar na linha de baixo, sem quebrar o lado do input */
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    animation: fadeIn 0.3s ease;
 }
 
 @keyframes shake {
     0%, 100% { transform: translateX(0); }
     25% { transform: translateX(-5px); }
     75% { transform: translateX(5px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* ESTILO TITULOS SECTIONS */
